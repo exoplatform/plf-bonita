@@ -34,105 +34,102 @@ import org.exoplatform.webui.core.UIComponent;
 import org.exoplatform.webui.event.Event;
 import org.exoplatform.webui.event.EventListener;
 
-@ComponentConfig(
-        template = "classpath:templates/approveAction/UIApproveAction.gtmpl",
-        events = {@EventConfig(listeners = UIApproveAction.ApproveActionListener.class),
-        		@EventConfig(listeners = UIApproveAction.GetCommentActionListener.class)}
-)
-
+@ComponentConfig(template = "classpath:templates/approveAction/UIApproveAction.gtmpl", events = {
+    @EventConfig(listeners = UIApproveAction.ApproveActionListener.class),
+    @EventConfig(listeners = UIApproveAction.GetCommentActionListener.class) })
 public class UIApproveAction extends UIComponent {
-	private static Log logger = ExoLogger.getLogger(UIApproveAction.class);
-	private static final String STATE_PROPERTY = "publication:currentState";
-	private static final String DRAFT = "draft";
+  private static Log logger = ExoLogger.getLogger(UIApproveAction.class);
+  private static final String STATE_PROPERTY = "publication:currentState";
+  private static final String DRAFT = "draft";
 
-	public UIApproveAction() {
-	}
+  public UIApproveAction() {}
 
-	public String getState() throws Exception {
-		Node node = getEditingNode();
-		if (node.hasProperty("publication:currentState")) {
-			return node.getProperty("publication:currentState").getString();
-		} else {
-			return "notPublicationCycle";
-		}
+  public String getState() throws Exception {
+    Node node = getEditingNode();
+    if (node.hasProperty("publication:currentState")) {
+      return node.getProperty("publication:currentState").getString();
+    } else {
+      return "notPublicationCycle";
+    }
 
-	}
+  }
 
-	public Node getEditingNode() throws Exception {
-		return getAncestorOfType(UIJCRExplorer.class).getCurrentNode();
-	}
+  public Node getEditingNode() throws Exception {
+    return getAncestorOfType(UIJCRExplorer.class).getCurrentNode();
+  }
 
-	/**
-	 * return the allowed action on uiextension
-	 * @return
-	 */
-	public String[] getAllowedActions() {
-		String	inlife="false";
-		try {
-			Node node = this.getEditingNode();
-			if(node.hasProperty("exo:bonitaEnrolledIn")){
-				inlife = node.getProperty("exo:bonitaEnrolledIn").getString();
-			}
-			if (node.hasProperty(STATE_PROPERTY)) {
-				String state = node.getProperty(STATE_PROPERTY).getString();
-				if (state.equals(DRAFT ) && inlife.equals("false") ) {
-					return new String[] { "Approve" };
-				}
-			}
-			return new String[0];
-		} catch (Exception e) {
-			if(logger.isDebugEnabled()){
-				logger.debug(e.getStackTrace());
-			}
-			return new String[0];
-		}
+  /**
+   * return the allowed action on uiextension
+   * 
+   * @return
+   */
+  public String[] getAllowedActions() {
+    String inlife = "false";
+    try {
+      Node node = this.getEditingNode();
+      if (node.hasProperty("exo:bonitaEnrolledIn")) {
+        inlife = node.getProperty("exo:bonitaEnrolledIn").getString();
+      }
+      if (node.hasProperty(STATE_PROPERTY)) {
+        String state = node.getProperty(STATE_PROPERTY).getString();
+        if (state.equals(DRAFT) && inlife.equals("false")) {
+          return new String[] { "Approve" };
+        }
+      }
+      return new String[0];
+    } catch (Exception e) {
+      if (logger.isDebugEnabled()) {
+        logger.debug(e.getStackTrace());
+      }
+      return new String[0];
+    }
 
-	}
+  }
 
-	@SuppressWarnings("unchecked")
-	public List<String> getMessages() {
-		HttpServletRequest request = Util.getPortalRequestContext().getRequest();
-		List<String> msglist = (List<String>) request.getAttribute("messages");
-		return msglist;
-	}
-	
-	public String getCommentsFromNode()  {
-		HttpServletRequest request = Util.getPortalRequestContext().getRequest();
-		String comment = (String)request.getAttribute("comment");
-		if(comment != null){
-			return comment;
-		}else{
-			return "";
-		}
-	}
+  @SuppressWarnings("unchecked")
+  public List<String> getMessages() {
+    HttpServletRequest request = Util.getPortalRequestContext().getRequest();
+    List<String> msglist = (List<String>) request.getAttribute("messages");
+    return msglist;
+  }
 
-	public static class ApproveActionListener extends EventListener<UIApproveAction> {
-		public void execute(Event<UIApproveAction> event) throws Exception {
+  public String getCommentsFromNode() {
+    HttpServletRequest request = Util.getPortalRequestContext().getRequest();
+    String comment = (String) request.getAttribute("comment");
+    if (comment != null) {
+      return comment;
+    } else {
+      return "";
+    }
+  }
 
-			if (logger.isDebugEnabled()) {
-				logger.debug("### Starting Approve Action ...");
-			}
-			UIApproveAction uiApproveAction = (UIApproveAction) event.getSource();
-			HttpServletRequest request = Util.getPortalRequestContext().getRequest();
+  public static class ApproveActionListener extends EventListener<UIApproveAction> {
+    public void execute(Event<UIApproveAction> event) throws Exception {
 
-			Node node = uiApproveAction.getEditingNode();
-			ExoContainer container = PortalContainer.getInstance();
-			ProcessManager processManager = (ProcessManager)container.getComponentInstanceOfType(ProcessManager.class);
-			processManager.startProcess(node, request);
-		}
-	}
-	
-	public static class GetCommentActionListener extends EventListener<UIApproveAction> {
-		public void execute(Event<UIApproveAction> event) throws Exception {
-			UIApproveAction uiApproveAction = (UIApproveAction) event.getSource();
-			HttpServletRequest request = Util.getPortalRequestContext().getRequest();
-			Node node = uiApproveAction.getEditingNode();
-			String comment = "No Comments";
-			if(node.hasProperty("exo:comment")){
-				comment = node.getProperty("exo:comment").getString();
-			}
-			request.setAttribute("comment", comment);
-		}
-	}
-	
+      if (logger.isDebugEnabled()) {
+        logger.debug("### Starting Approve Action ...");
+      }
+      UIApproveAction uiApproveAction = (UIApproveAction) event.getSource();
+      HttpServletRequest request = Util.getPortalRequestContext().getRequest();
+
+      Node node = uiApproveAction.getEditingNode();
+      ExoContainer container = PortalContainer.getInstance();
+      ProcessManager processManager = (ProcessManager) container.getComponentInstanceOfType(ProcessManager.class);
+      processManager.startProcess(node, request);
+    }
+  }
+
+  public static class GetCommentActionListener extends EventListener<UIApproveAction> {
+    public void execute(Event<UIApproveAction> event) throws Exception {
+      UIApproveAction uiApproveAction = (UIApproveAction) event.getSource();
+      HttpServletRequest request = Util.getPortalRequestContext().getRequest();
+      Node node = uiApproveAction.getEditingNode();
+      String comment = "No Comments";
+      if (node.hasProperty("exo:comment")) {
+        comment = node.getProperty("exo:comment").getString();
+      }
+      request.setAttribute("comment", comment);
+    }
+  }
+
 }

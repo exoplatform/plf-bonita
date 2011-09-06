@@ -13,21 +13,22 @@ import org.exoplatform.services.rest.resource.ResourceContainer;
 @Path("publicationService")
 public class PublicationRestService implements ResourceContainer {
 
-	/**
-	 * change the statate of a given node
-	 * --- When you use POST, you are allowed to use void --- If you use GET
-	 * void is not allowed
-	 * @param path
-	 * @param userName
-	 * @param status
-	 * @return
-	 */
-	@POST
-	@Path("publisheddocument")
-	public String publisheddocument(@FormParam("path") String path,@FormParam("userName") String userName,@FormParam("status") String status) {
+  /**
+   * change the statate of a given node --- When you use POST, you are
+   * allowed to use void --- If you use GET void is not allowed
+   * 
+   * @param path
+   * @param userName
+   * @param status
+   * @return
+   */
+  @POST
+  @Path("publisheddocument")
+  public String publisheddocument(@FormParam("path") String path, @FormParam("userName") String userName,
+      @FormParam("status") String status) {
 
-		ChangePublicationService changepublication = new ChangePublicationService();
-		changepublication.start(path,status);
-		return path;
-	}
+    ChangePublicationService changepublication = new ChangePublicationService();
+    changepublication.start(path, status);
+    return path;
+  }
 }

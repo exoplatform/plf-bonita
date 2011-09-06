@@ -5,6 +5,12 @@
 	</component>
 	<component>
 		<type>org.exoplatform.bonitasoft.services.process.ProcessManager</type>
+		<init-params>
+			<value-param>
+				<name>publication.process.path</name>
+				<value>PublicationProcess--1.0</value>
+			</value-param>
+		</init-params>
 	</component>
 	<component>
 		<type>org.exoplatform.bonitasoft.services.rest.publication.PublicationRestService</type>
@@ -21,27 +27,4 @@
 	<component>
 		<type>org.exoplatform.bonitasoft.services.rest.BonitaLifecycle.GetBonitaLifeCycle</type>
 	</component>
-	<!--external-component-plugins>
-   <target-component>org.exoplatform.services.scheduler.JobSchedulerService</target-component>
-    <component-plugin>
-      <name>PeriodJob Plugin</name>
-      <set-method>addPeriodJob</set-method>
-      <type>org.exoplatform.services.scheduler.PeriodJob</type>
-      <description>period job configuration</description>
-      <init-params>
-        <properties-param>
-          <name>job.info</name>
-          <description>Bonita job executed  periodically</description>
-          <property name="jobName" value="DumbJob"/>
-          <property name="groupName" value="DumbJobGroup"/>
-          <property name="job" value="org.exoplatform.bonitasoft.services.rest.bonita.DeployProcessService"/>
-          <property name="repeatCount" value="1"/>
-          <property name="period" value="60000"/>
-          <property name="startTime" value="+5"/>
-          <property name="endTime" value=""/>
-        </properties-param>
-      </init-params>
-    </component-plugin>
- </external-component-plugins-->
-	
 </configuration>
