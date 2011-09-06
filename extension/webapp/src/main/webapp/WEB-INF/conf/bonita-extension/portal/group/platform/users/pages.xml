@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+
+    Copyright (C) 2009 eXo Platform SAS.
+    
+    This is free software; you can redistribute it and/or modify it
+    under the terms of the GNU Lesser General Public License as
+    published by the Free Software Foundation; either version 2.1 of
+    the License, or (at your option) any later version.
+    
+    This software is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+    Lesser General Public License for more details.
+    
+    You should have received a copy of the GNU Lesser General Public
+    License along with this software; if not, write to the Free
+    Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
+    02110-1301 USA, or see the FSF site: http://www.fsf.org.
+
+-->
+
+<page-set
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.gatein.org/xml/ns/gatein_objects_1_1_1 http://www.gatein.org/xml/ns/gatein_objects_1_1_1"
+    xmlns="http://www.gatein.org/xml/ns/gatein_objects_1_1_1">
+
+	<page>
+		<name>workflow</name>
+		<title>workflow</title>
+		<access-permissions>member:/platform/users</access-permissions>
+		<edit-permission>manager:/platform/administrators</edit-permission>
+		<portlet-application>
+			<portlet>
+				<application-ref>bonita-portlet</application-ref>
+				<portlet-ref>UIParametrizedIFramePortlet</portlet-ref>
+			</portlet>
+			<title>workflow</title>
+			<access-permissions>member:/platform/users</access-permissions>
+			<show-info-bar>false</show-info-bar>
+			<height>450px</height>
+		</portlet-application>
+		<container id="ecmexplorer" template="system:/groovy/portal/webui/container/UIWfContainer.gtmpl">
+        <access-permissions>Everyone</access-permissions>
+		 <portlet-application>
+		    <portlet>
+		        <application-ref>ecmexplorer</application-ref>
+		        <portlet-ref>FileExplorerPortlet</portlet-ref>
+		        <preferences>
+		    		<preference>
+		    			<name>driveName</name>     
+		    			<value>collaboration</value>        
+		    			<read-only>false</read-only>
+		    		</preference>        	
+		    		<preference>
+		    			<name>showActionBar</name>     
+		    			<value>false</value>        
+		    			<read-only>false</read-only>
+		    		</preference>        	
+		    		<preference>
+		    			<name>editInNewWindow</name>     
+		    			<value>false</value>        
+		    			<read-only>false</read-only>
+		    		</preference>        	
+		    		<preference>
+		    			<name>usecase</name>     
+		    			<value>selection</value>        
+		    			<read-only>false</read-only>
+		    		</preference>        	
+		    		<preference>
+		    			<name>showSideBar</name>     
+		    			<value>false</value>        
+		    			<read-only>false</read-only>
+		    		</preference>        	
+		    		<preference>
+		    			<name>showTopBar</name>     
+		    			<value>false</value>        
+		    			<read-only>false</read-only>
+		    		</preference>        	
+		        </preferences>
+		      </portlet>
+		      <title>workflow</title>
+		      <access-permissions>member:/platform/users</access-permissions>
+		      <show-info-bar>false</show-info-bar>
+        </portlet-application>
+       </container> 
+	</page>
+	
+	<page>
+		<name>bonitaXP</name>
+		<title>bonitaXP</title>
+		<access-permissions>member:/platform/users</access-permissions>
+		<edit-permission>manager:/platform/administrators</edit-permission>
+		<portlet-application>
+			<portlet>
+				<application-ref>bonita-portlet</application-ref>
+				<portlet-ref>UIIFrameLocalPortlet</portlet-ref>
+				<preferences>
+					<preference>
+						<name>url</name>
+						<value>/bonita</value>
+						<read-only>false</read-only>
+					</preference>
+				</preferences>
+			</portlet>
+			<title>bonitaXP</title>
+			<access-permissions>member:/platform/users</access-permissions>
+			<show-info-bar>false</show-info-bar>
+			<height>640px</height>
+		</portlet-application>
+	</page>
+	
+	<page>
+		<name>bonitaTODO</name>
+		<title>bonitaTODO</title>
+		<access-permissions>member:/platform/users</access-permissions>
+		<edit-permission>manager:/platform/administrators</edit-permission>
+		<portlet-application>
+			<portlet>
+				<application-ref>bonita-portlet</application-ref>
+				<portlet-ref>IFrameLocalPortlet</portlet-ref>
+				<preferences>
+					<preference>
+						<name>url</name>
+						<value>/bonita/console/BonitaConsole.html?#CaseList/lab:Inbox</value>
+						<read-only>false</read-only>
+					</preference>
+				</preferences>
+			</portlet>
+			<title>bonitaTODO</title>
+			<access-permissions>member:/platform/users</access-permissions>
+			<show-info-bar>false</show-info-bar>
+			<height>640px</height>
+		</portlet-application>
+	</page>
+  
+</page-set>

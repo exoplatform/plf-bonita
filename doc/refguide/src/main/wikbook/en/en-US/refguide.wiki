@@ -1,0 +1,108 @@
+
+h1.{anchor:_Toc293676207}Introduction 
+h2.{anchor:_Toc288484684}{anchor:_Toc293676208}Purpose 
+The purpose of this document is to present the technical choice to integrate bonita and PLF. 
+h2.{anchor:_Toc293676209}Technical environment 
+PLF : 3.0.4 
+Bonita : 5.4.2 
+Browser : Firefox 
+Base de donné : HSQL 
+Adresse : http://bpm-demo.exoplatform.org 
+h1.{anchor:_Toc293676210}Integrate SSO mechanism to PLF (removed on since version-0.4) 
+h2.{anchor:_Toc293676211}Documentation 
+We follow documentation found on: [http://docs.jboss.com/gatein/portal/3.1.0-FINAL/reference-guide/en-US/html_single/index.html#chap-Reference_Guide-SSO_Single_Sign_On|http://docs.jboss.com/gatein/portal/3.1.0-FINAL/reference-guide/en-US/html_single/index.html#chap-Reference_Guide-SSO_Single_Sign_On] 
+We found many problems, especially when we apply this document to PLF. 
+h2.{anchor:_Toc293676212}Problems 
+* We must use CAS web application with HTTPS protocol and not with HTTP one. To allow sharing authentication ticket between web application using CAS application. 
+* "Jaas.conf" has some mistake. 
+* On tomcat/webapps/portal/WEB-INF/web.xml we are obliged to put the target url after SSO authentication, this url must be the same and hard coded on "org.gatein.sso.agent.cas. CASAgent". 
+* Logout doesn't work. 
+
+h1.{anchor:_Toc293676213}Integrate Bonita and PLF 
+h2.{anchor:_Toc293676214}Use a dedicated AS to each application 
+At the begin, we decide to use 2 tomcats: 
+* The first one, for PLF and CAS 
+* The second, for bonita 
+
+*Problem:* 
+* We want to integrate bonita via iframe portlet to PLF, but we must use the same ip:port to allow all screen work -> 2 solutions are possible: 
+** Use a httpd to solve this problem 
+** Deploy bonita on the same tomcat as PLF. 
+
+h2.{anchor:_Toc293676215}Use a single tomcat to all applications 
+Bonita team asked us to deploy their application on the same tomcat, they aren't sure that bonita and httpd work well. 
+h3.{anchor:_Toc293676216}Deploy Bonita on standard mode 
+With bonita team, we found that it is possible to have a conflict between jar version. Also, we have multiple war, only once for bonita. So we decide that bonita team add their jar to its own war to avoid this problem. 
+h4. Call bonita Service from exo 
+With the configuration described before, we can't call any sevice from Bonita because bonita use his own class path (all necessary jar file are on bonita.war). 
+h4.Other solution 
+To allow exo call bonita service, we decide to deploy bonita and their rest service API to allow exo call their service. 
+h3.{anchor:_Toc293676217}Deploy Bonita with rest api 
+We decide to deploy bonita.war and bonita-server-rest.war (this war present the rest api). 
+From exo service we just need to call a rest service delivered by bonita-server-rest. The first example is "LeaveApplication" process that we launch it from "site explorer". 
+h2.{anchor:_Toc293676218}Integrate application on portal 
+Bonita team develops 2 web applications and we add them into homepage via iframe portlet, these applications allow us to: 
+* "todoList", this application show the list of assigned task to logged user. 
+* "processList", this application show the list of deployed process on bonita 
+
+Each list of these 2 applications is a list of link, when we click on one of them; we can start a new instance of a process or work on an existing instance. 
+h1.{anchor:_Toc293676219}Problems occurred after start the server 
+h2.{anchor:_Toc293676220}Bonita database 
+After starting the server, the bonita database doesn't initiated. So we must logon on bonitaXP twice, the first attempt throw SSO module, the second throw bonita auth module. This step is done just for the first time we logged with a user. According bonita team, this problem will be solved on bonita-5.4.2. 
+h2.{anchor:_Toc293676221}Conflict on jar file on bonitaList 
+There was a problem with bonita application when loading their jar file. Bonita team doesn't know yet witch jar are responsible for that result, a work around is done: after start the server, we must call at the first time a bonita application "server/bonitaList/todoList.jsp". We are waiting a response from bonita team to solve this problem. 
+*PS:* Since we didn't deploy anymore the bonitalist.war, this problem will not occur. 
+h2.{anchor:_Toc293676222}Conflict on jar file when start a process 
+When we want to start a process, an exception is occurred. Bonita team told us that we must delete some jar from tomcat/lib to allow start process. This is the list of deleted jar: 
+* exo-ecms-ext-workflow-api-2.1.4.jar 
+* exo-ecms-ext-workflow-bp-content-plugin-2.1.4.jar 
+* exo-ecms-ext-workflow-bp-content-publication-2.1.4.jar 
+* exo-ecms-ext-workflow-bp-content-webui-2.1.4.jar 
+* exo-ecms-ext-workflow-bp-jbpm-content-2.1.4.jar 
+* exo-ecms-ext-workflow-bp-jbpm-holiday-2.1.4.jar 
+* exo-ecms-ext-workflow-bp-jbpm-payraise-2.1.4.jar 
+* exo-ecms-ext-workflow-facade-jbpm-2.1.4.jar 
+* exo-ecms-ext-workflow-webui-2.1.4.jar 
+
+*Questions:* 
+* When we delete these jars, surely webapps workflow.war, ecmworkflow-extension.war and eXoWorkflowResources.war will not work correctly (Y/N)? 
+* Now, we are trying to integrate a bpm solution into PLF, maybe we should remove all extension, jar and war from PLF related to workflow to avoid conflict between applications. What do you think? 
+
+h2.{anchor:_Toc293676223}TodoList and ProcessList bugs 
+Some time, when we click on a link on "todoList" or "processList", we get a screen contain the home page of "bonitaXP" instead of a screen related to the process or instance selected. We wait a correction from bonita team. 
+*PS:* we migrate these apps to gadget, so the problem is no longer persist 
+h2.{anchor:_Toc293676224}Locked node after starting "PublicationProcess" 
+To start "PublicationProcess", we must edit content. When we do this, this content is now locked. Some time, we can unlock content, some time no. even after restarting server, the lock is persisting. 
+h2.{anchor:_Toc293676225}Administration right are coded hardly 
+The administration rights are given hardly to "admin" and "root", it must be done dynamically and use organization service from exo. 
+A jira CPBONITA-135 is created, and we must make a call to decide which steps are necessary to avoid this. 
+h1.{anchor:_Toc293676226}Packaging 
+h2.{anchor:_Toc293676227}Under Tomcat 
+h3.{anchor:_Toc293676228}PLF-3.0.3 & Bonita-5.4.1 
+With these version, we are made a manual packaging, we try to generate bonita war via mvn, until now we get the first one, still 3 other webapps from bonita. 
+Bonita applications aren't found on a maven repo, we must discuss with bonita team to have this war (bonita.war and bonita-server-rest.war). 
+h3.{anchor:_Toc293676229}PLF-3.0.4 & Bonita-5.4.1 
+We try to deploy bonita on the latest version of PLF-3.0.4, automatically, except bonita war due the same problem listed below. 
+With these versions, we found a problem: we must create PLF and Bonita database twice. To succeed deploying process on bonita. We told bonita team with this problem and we wait their response or remarks. 
+h3.{anchor:_Toc293676230}PLF-3.0.4 & Bonita-5.4.2 
+Both of these versions are released, so we can use an automatic packaging to build PLF with appropriate extension for bonita. We didn't deploy anymore war or jar related to exo workflow. 
+h2.{anchor:_Toc293676231}Under JBOSS 
+Under jboss AS, there wasn't an automatic package, so we get the PLF package under Jboss and we add the necessary EAR and configuration file. A document wil be available to explain all steps to have a jboos package for PLF and bonita. 
+We found some problem: 
+* We can't login into UXP. 
+* Can't call bonita rest service. 
+
+h1.{anchor:_Toc293676232}Bonita SP 
+We are waiting for a delivery for a "SP" version of bonita to integrate it instead of community version. 
+This version offer more functionality than we found on community version, ex: internationalization of label found on bonita form dedicated to the deployed process. 
+We don't know the list of all functionalities. 
+h1.{anchor:_Toc293676233}Internationalization of BXP 
+On bonita XP we can select the language used on engine, since we integrate the uxp into portal, we can found that the portal use French language and uxp use English one. 
+So we (exo) must provide a rest service allow getting the selected language used on portal, and bonita team must use this service to use the language returned into uxp. 
+h1.{anchor:_Toc293676234}Migration to Bonita-5.5-SP 
+After migrate to this version, we found some problems: 
+* We use the same configuration file used with version 5.4.2, we don't know if it can cause some problems. 
+* We can login to the UXP, but we can't deploy process file (.bar) 
+* We call the rest services, it seem to be work, because we didn't get any exception. The response is always empty because there is no process deployed on bonita. At least with rest-client we get 200 as a response when we call a rest service. 
+
+We still waiting for a response from bonita team to solve problem related to deployed process and validate that we use the right configuration file. 

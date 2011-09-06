@@ -1,0 +1,450 @@
+
+
+h1. {anchor:_Toc293675700}Introduction
+
+
+h2. {anchor:_Toc288484684}{anchor:_Toc293675701}Purpose
+
+The purpose of this document is to present a guide to a new developer on bonita and PLF integration.
+
+h2. {anchor:_Toc293675702}Technical environment
+
+PLF: 3.0.4 \\
+
+Bonita: 5.4.2 \\
+
+Browser: Firefox \\
+
+Data base: HSQL \\
+
+Link: [http://bpm-demo.exoplatform.org]
+
+h1. {anchor:_Toc293675703}Run Bonita application with SSO server (removed on since version-0.4)
+
+In order to use Bonita application with SSO server, we must follow these steps below.
+
+h2. {anchor:_Toc293675704}Generate certificate (removed on since version-0.4)
+
+We must execute this command in the command prompt:
+{code}
+%java_home%\jre\bin>keytool -genkey -alias bpm.demo.exoplatform.org -keyAlg RSA –keystore ../lib/security/cacerts
+Tapez le mot de passe du Keystore :
+Quels sont vos prÚnom et nom ?
+  [Unknown] :  bpm-demo.exoplatform.org
+Quel est le nom de votre unitÚ organisationnelle ?
+  [Unknown] :  ITOP
+Quelle est le nom de votre organisation ?
+  [Unknown] :  eXo Platform
+Quel est le nom de votre ville de rÚsidence ?
+  [Unknown] :  Vannes
+Quel est le nom de votre Útat ou province ?
+  [Unknown] :  56
+Quel est le code de pays Ó deux lettres pour cette unitÚ ?
+  [Unknown] :  FR
+Est-ce CN=bpm.demo.exoplatform.org, OU=bpm.demo.exoplatform.org, O=bpm.demo.exoplatform.org, L=bpm.demo.exoplatform.org, ST=bpm.demo.exoplatform.org, C=fr ?
+  [non] :  oui
+
+SpÚcifiez le mot de passe de la clÚ pour <bpm.demo.exoplatform.org>
+        (appuyez sur EntrÚe s'il s'agit du mot de passe du Keystore) :
+
+{code}
+
+This will add the keyAlias *bpm-demo.exoplatform.org* to *%java_home%/jre/lib/security/cacerts.*\\
+
+
+h2. {anchor:_Toc293675705}Change the server.xml (removed on since version-0.4)
+
+To take on account the generated certificate, we must change this bloc in server.xml:\\
+
+{code}
+<Connector port="443" protocol="HTTP/1.1" SSLEnabled="true"
+		maxThreads="150" scheme="https" secure="true"
+		clientAuth="false" sslProtocol="TLS"
+		keyAlias="bpm.demo.exoplatform.org"<!-- alias used when create the certificate -->
+		keystoreFile="%java_home%/jre/lib/security/cacerts" 
+                            <!--replace this with your %java_home% -->
+		keystorePass="changeit" <!--password used when create the certificate -->
+		truststoreFile="%java_home%/jre/lib/security/cacerts"
+                            <!--replace this with your %java_home% -->
+		truststorePass="changeit"/><!--password used when create the certificate -->
+
+{code}
+
+
+h2. {anchor:_Toc293675706}Change the gatein.bat and gatein.sh
+
+The content of this file must be coherent to what we put on certificate and server.xml: "alias and used port" see also the comment on these file.
+*NB: remove all HTTPS variables* \\
+
+For gatein.bat:
+{code}
+set BPM_HOSTNAME=bpm-demo.exoplatform.org
+set BPM_HTTP_PORT=8080
+set BPM_URI=http://%BPM_HOSTNAME%:%BPM_HTTP_PORT%
+rem set BPM_URI=http://%BPM_HOSTNAME%
+
+set BPM_OPTS=-Dorg.exoplatform.runtime.conf.gatein.host=%BPM_HOSTNAME% %BPM_OPTS%
+set BPM_OPTS=-Dorg.exoplatform.runtime.conf.gatein.port=%BPM_HTTP_PORT% %BPM_OPTS%
+set BPM_OPTS=-Dorg.exoplatform.runtime.conf.gatein.portal=portal %BPM_OPTS%
+
+set BPM_OPTS=-Dorg.exoplatform.runtime.conf.cas.server.name=%BPM_URI% %BPM_OPTS%
+
+set BONITA_HOME=-DBONITA_HOME=..\bonita
+set REST=-Dorg.ow2.bonita.rest-server-address=%BPM_URI%/bonita-server-rest -Dorg.ow2.bonita.api-type=REST
+
+{code}
+
+For gatein.sh:
+{code}
+BPM_HTTP_PORT=80
+
+# if port is not 80, use http://${BPM_HOSTNAME}:${BPM_HTTP_PORT}
+BPM_URI=http://${BPM_HOSTNAME}
+# BPM_URI=http://${BPM_HOSTNAME}:${BPM_HTTP_PORT}
+
+BPM_OPTS="-Dorg.exoplatform.runtime.conf.gatein.host=${BPM_HOSTNAME} -Dorg.exoplatform.runtime.conf.gatein.port=${BPM_HTTP_PORT} -Dorg.exoplatform.runtime.conf.gatein.portal=portal"
+BPM_OPTS="-Dorg.exoplatform.runtime.conf.cas.server.name=${BPM_URI} ${BPM_OPTS}"
+
+BONITA_HOME="-DBONITA_HOME=../bonita"
+REST="-Dorg.ow2.bonita.rest-server-address=${BPM_URI}/bonita-server-rest -Dorg.ow2.bonita.api-type=REST"
+
+{code}
+
+h2. {anchor:_Toc293675707}Run the server
+To connect to portal, we must execute this URL: [http://bpm.demo.exoplatform.org/portal/sso] to allow the CAS authentication.
+h1. {anchor:_Toc293675708}Change file on webapp
+
+
+h2. {anchor:_Toc293675709}Portal.war (removed on since version-0.4)
+
+To use sso we must edit the web.xml: \\
+
+Add filter:
+{code}
+<filter>
+		<filter-name>LoginRedirectFilter</filter-name>
+		<filter-class>org.gatein.sso.agent.filter.LoginRedirectFilter</filter-class>
+		<init-param>                                 
+		  <!-- This should point to your SSO authentication server -->                                                                                              
+		  <param-name>LOGIN_URL</param-name>   
+		  <!--
+		      If casRenewTicket param value of InitiateLoginServlet is:  not specified or false
+		  -->
+		  <param-value>${org.exoplatform.runtime.conf.cas.server.login.url}?service=${org.exoplatform.runtime.conf.cas.server.name}/portal/private/intranet</param-value>
+		  <!--
+		      If casRenewTicket param value of InitiateLoginServlet is : true
+		  -->
+		  <!--
+		  <param-value>http://localhost:8888/cas/login?service=http://localhost:8080/portal/private
+		  /classic&amp;renew=true</param-value>      		  
+		  -->
+		</init-param>
+	</filter>
+	<filter>
+<filter-name>CASLogoutFilter</filter-name>                                                                                              
+		<filter-class>org.gatein.sso.agent.filter.CASLogoutFilter</filter-class>                                                      
+		<init-param>                                                                                         
+		  <param-name>LOGOUT_URL</param-name>                                                                                                
+		  <param-value>${org.exoplatform.runtime.conf.cas.server.logout.url}</param-value>                                                                                                         
+		</init-param>                                                                                                                              
+	</filter>
+
+<filter-mapping>
+	  <filter-name>LoginRedirectFilter</filter-name>
+	  <url-pattern>/*</url-pattern>	         
+	</filter-mapping>
+	<filter-mapping>
+	  <filter-name>CASLogoutFilter</filter-name>
+	  <url-pattern>/*</url-pattern>
+	</filter-mapping>
+
+{code}
+Edit Servlet:
+{code}
+<servlet>
+	  <servlet-name>InitiateLoginServlet</servlet-name>
+	  <servlet-class>org.gatein.sso.agent.GenericSSOAgent</servlet-class>
+	  <init-param>
+		<param-name>ssoServerUrl</param-name>
+		<param-value>${org.exoplatform.runtime.conf.cas.server.url.prefix}</param-value>
+	  </init-param>    
+	  <init-param>
+		<param-name>casRenewTicket</param-name>
+		<param-value>false</param-value>
+	  </init-param>
+</servlet>
+
+{code}
+
+h2. {anchor:_Toc293675710}bonita.war
+{code}
+<filter>
+    <filter-name>CAS Web Authentication Filter</filter-name>
+    <filter-class>org.exoplatform.bonitasoft.filter.SetCredentialsInSessionFilter</filter-class>
+</filter>
+
+<filter-mapping>
+    <filter-name>CAS Web Authentication Filter</filter-name>
+    <url-pattern>/*</url-pattern>
+ </filter-mapping>
+
+{code}
+
+h2. {anchor:_Toc293675711}bonita-todo.war
+{code}
+<filter>
+    <filter-name>CAS Web Authentication Filter</filter-name>
+    <filter-class> org.exoplatform.bonitasoft.filter.SetCredentialsInSessionFilter</filter-class>
+ </filter>
+
+<filter-mapping>
+    <filter-name>CAS Web Authentication Filter</filter-name>
+    <url-pattern>/*</url-pattern>
+
+ </filter-mapping>
+
+{code}
+
+h2. {anchor:_Toc293675712}CAS.war (removed on since version-0.4)
+
+We use CAS version 3.4.5. \\
+
+We change this file cas\WEB-INF\deployerConfigContext.xml \\
+
+Edit this propoety:
+{code}
+<property name="authenticationHandlers">
+			<list>
+				<!--
+					| This is the authentication handler that authenticates services by means of callback via SSL, thereby validating
+					| a server side SSL certificate.
+					+-->
+				<bean class="org.jasig.cas.authentication.handler.support.HttpBasedServiceCredentialsAuthenticationHandler"
+					p:httpClient-ref="httpClient" />
+				<!--
+					| This is the authentication handler declaration that every CAS deployer will need to change before deploying CAS 
+					| into production.  The default SimpleTestUsernamePasswordAuthenticationHandler authenticates UsernamePasswordCredentials
+					| where the username equals the password.  You will need to replace this with an AuthenticationHandler that implements your
+					| local authentication strategy.  You might accomplish this by coding a new such handler and declaring
+					| edu.someschool.its.cas.MySpecialHandler here, or you might use one of the handlers provided in the adaptors modules.
+					+-->
+				
+				<!--
+				<bean class="org.jasig.cas.authentication.handler.support.SimpleTestUsernamePasswordAuthenticationHandler" />
+				-->
+			    <!-- Integrates with the Gatein Authentication Service to perform authentication -->
+			    <!--
+			    	Note: Modify the Plugin Configuration based on the actual information of a GateIn instance.
+			    	The instance can be anywhere on the internet...Not on localhost where CAS is running 
+			     -->    				
+				<bean class="org.gatein.sso.cas.plugin.AuthenticationPlugin">
+					<property name="gateInHost"><value>${org.exoplatform.runtime.conf.gatein.host}</value></property>
+					<property name="gateInPort"><value>${org.exoplatform.runtime.conf.gatein.port}</value></property>
+					<property name="gateInContext"><value>${org.exoplatform.runtime.conf.gatein.portal}</value></property>
+				</bean>				
+			</list>
+		</property>
+
+{code}
+
+h1. {anchor:_Toc293675713}SSO documentation (removed on since version-0.4)
+To install CAS with PLF we follow this documentation: \\
+
+
+[http://docs.jboss.com/gatein/portal/3.1.0-FINAL/reference-guide/en-US/html_single/index.html#sect-Reference_Guide-Single_Sign_On-CAS_Central_Authentication_Service|http://docs.jboss.com/gatein/portal/3.1.0-FINAL/reference-guide/en-US/html_single/index.html#sect-Reference_Guide-Single_Sign_On-CAS_Central_Authentication_Service]
+
+h2. {anchor:_Toc293675714}How to work
+
+The CAS server ensures that the login and password are correct and deliver to the application a token that the user is authenticated. \\
+
+On our case, CAS checks the login and password via a service delivered by exo to ensure that the login user is already exist. \\
+
+After, the application load user profile and create session applicative.
+h2. {anchor:_Toc293675715}Login module
+We make these changes on tomcat/conf/jaas.conf: \\
+
+Edit the login module of PLF: *(removed on since version-0.4)*
+{code}
+gatein-domain {
+  //org.exoplatform.web.security.PortalLoginModule required;
+  //org.exoplatform.services.security.jaas.SharedStateLoginModule required;
+  //org.exoplatform.services.security.j2ee.TomcatLoginModule required; 
+  
+  // Uncomment the following part (and comment the other part for CAS integration
+	org.gatein.sso.agent.login.SSOLoginModule required;
+	org.exoplatform.services.security.j2ee.TomcatLoginModule required;
+};
+
+{code}
+h1. {anchor:_Toc293675716}Activate JMX configuration
+
+We need to add tomcat-catalina-jmx-remote-\{tomcat.version\}.jar to tomcat 
+{code}
+<Listener className="org.apache.catalina.mbeans.JmxRemoteLifecycleListener" rmiRegistryPortPlatform="32803" rmiServerPortPlatform="32903"/> 
+{code}
+To tomcat/conf/server.xml. 
+{code}
+set JMX1=-Djava.rmi.server.hostname=127.0.0.1 
+set JMX3=-Dcom.sun.management.jmxremote.access.file="path/jmxremote.access" 
+set JMX2=-Dcom.sun.management.jmxremote.password.file="path/jmxremote.password" 
+set JMX4=-Dcom.sun.management.jmxremote.ssl=false 
+set CATALINA_OPTS= %JMX1% %JMX3% %JMX2% %JMX4% 
+{code}
+
+to tomcat/bin/gatein.bat.\\
+
+"path" is the path where we can found these two files.
+
+h1. {anchor:_Toc293675717}How to create a bundle (if needed) 
+
+* Get our sources from "http://svn.exoplatform.org/custom/bonitasoft/eXo/trunk/"
+* Run "mvn install \--Pexo-cp" on parent project. Note that we must activate "CP" profile to allow download of necessary bonita dependencies. Also, if you don't have PLF dependencies on local repository, activate "private" profile.
+
+*These steps are unneeded because we can build and deploy the necessary war and jar file.*
+*We keep them, to allow who read this document how can we generate bonita applications.*
+* BOS-5.4.2.
+
+From BOS we can generate the necessary war:
+* From BOS Studio export User XP
+
+!worddavbd3b1de71475bccfb6723cf3a363f588.png|height=541,width=429!
+
+add "cas-filter-5.4.1.jar" to bonita.war/WEB-INF/lib [here|http://svn.exoplatform.org/custom/bonitasoft/bonita/trunk/cas-filter/cas-filter-5.4.1.jar] \\
+
+Edit web.xml like we did on $3.1. \\
+
+Add "ehcache-core-2.2.0.jar" into bonita.war/WEB-INF/lib \\
+
+Copy "bonita.war" into "tomcat/webapps". \\
+
+* From bonita Studio export the rest API:
+
+!worddav35e72d3f1c3b0177d66365c66f102f55.png|height=482,width=382!
+
+add "bonita-server-auth.jar" to bonita.war/WEB-INF/lib \\
+
+Copy "bonita-server-rest.war" to "tomcat/webapps".
+* Prepare tomcat
+** If needed, add those loginContext to tomcat/conf/jaas.conf
+{code}
+BonitaStore {
+ org.ow2.bonita.identity.auth.BonitaRESTLoginModule required restUser="restuser" restPassword="restbpm";
+};
+BonitaRESTServer {
+  org.ow2.bonita.identity.auth.BonitaRESTServerLoginModule required logins="restuser" passwords="restbpm" roles="restuser";
+};
+
+{code}
+** If needed, add those datasources to tomcat/conf/context.xml
+{code}
+<!-- Configure Datasource in order to be able to use c3p0 -->
+    <Resource
+name="bonita/default/journal"
+     auth="Container"
+     type="com.mchange.v2.c3p0.ComboPooledDataSource"
+     factory="org.apache.naming.factory.BeanFactory"
+     description="DB Connection"
+     driverClass="org.h2.Driver"
+     jdbcUrl="jdbc:h2:file:${BONITA_HOME}/server/default/work/databases/bonita_journal.db;FILE_LOCK=NO;MVCC=TRUE;DB_CLOSE_ON_EXIT=TRUE"
+     user="sa"
+     password=""
+     initialPoolSize="1"                 
+     maxPoolSize="15"
+     minPoolSize="3"
+     maxConnectionAge="0"
+     maxIdleTime="1800"
+     maxIdleTimeExcessConnections="120"
+     idleConnectionTestPeriod="30"
+     testConnectionOnCheckout="true"
+     acquireIncrement="3"/>
+    <ResourceLink
+       global="bonita/default/journal"
+       name="bonita/default/journal"
+       type="javax.sql.DataSource" />
+   
+    <Resource
+     name="bonita/default/history"
+     auth="Container"
+     type="com.mchange.v2.c3p0.ComboPooledDataSource"
+     factory="org.apache.naming.factory.BeanFactory"
+     description="DB Connection"
+     driverClass="org.h2.Driver"
+     jdbcUrl="jdbc:h2:file:${BONITA_HOME}/server/default/work/databases/bonita_history.db;FILE_LOCK=NO;MVCC=TRUE;DB_CLOSE_ON_EXIT=TRUE"
+     user="sa"
+     password=""
+     initialPoolSize="1"
+     maxPoolSize="15"
+     minPoolSize="3"
+     maxConnectionAge="0"
+     maxIdleTime="1800"
+     maxIdleTimeExcessConnections="120"
+     idleConnectionTestPeriod="30"
+     testConnectionOnCheckout="true"
+     acquireIncrement="3"/>
+    <ResourceLink
+       global="bonita/default/history"
+       name="bonita/default/history"
+       type="javax.sql.DataSource" />
+
+{code}
+** Configure Bonita logging in tomcat/conf/logging.properties
+{code}
+org.bonitasoft.level = INFO
+org.bonitasoft.handlers = java.util.logging.ConsoleHandler
+
+org.ow2.bonita.runtime.event.EventDispatcherThread.level = WARNING
+org.ow2.bonita.runtime.event.EventDispatcherThread.handlers = java.util.logging.ConsoleHandler
+
+{code}
+** Add H2 driver to tomcat/lib (h2-1.2.139.jar)
+** Add Bonita env variables
+
+See $2.3 to see what we need to add into gatein.bat and/or gatein.sh
+* Remove some jar file from tomcat/lib if present (this step is automatic):
+** exo-ecms-ext-workflow-api-\{version\}.jar
+** exo-ecms-ext-workflow-bp-content-plugin-\{version\}.jar
+** exo-ecms-ext-workflow-bp-content-publication-\{version\}.jar
+** exo-ecms-ext-workflow-bp-content-webui-\{version\}.jar
+** exo-ecms-ext-workflow-bp-jbpm-content-\{version\}.jar
+** exo-ecms-ext-workflow-bp-jbpm-holiday-\{version\}.jar
+** exo-ecms-ext-workflow-bp-jbpm-payraise-\{version\}.jar
+** exo-ecms-ext-workflow-facade-jbpm-\{version\}.jar
+** exo-ecms-ext-workflow-webui-\{version\}.jar
+
+h2. {anchor:_Toc293675718}Description of components
+
+* bonitasoft.bonita.process: to put the generated bar file.
+* bonitasoft.component.filter: to add necessary filter into bonita app, this filter allow login and logout from bonita.
+* bonitasoft.component.services: rest service used by deployed process.
+* bonitasoft.component.uiextension: the uiextension shown into file explorer portlet to start "Publication Process".
+* bonitasoft.extension.bonitasoft-ext: extension that contain customized configuration for this project.
+* bonitasoft.extension.config: component to add extension into portal container.
+* bonitasoft.packaging.*: component for build a bundle of plf and bonita.
+* bonitasoft.portlet.custom: customized portlet for bonita integration.
+* bonitasoft.portlet.z-web: customized style for new portlet.
+* bonitasoft.server.tomcat.patch: all configuration file that we must edit/add, to generated a valid tomcat.
+* bonitasoft.web.bonita: to build/edit bonita.war
+* bonitasoft.web.bonita-server-rest: to build/edit bonita-server-rest.war
+* bonitasoft.web.bonita-todo: to build/edit bonita-todo.war
+
+
+h1. {anchor:_Toc293675719}Create and deploy process
+
+From BOS, we can create and export process on BAR file, after that we can deploy it into server.
+!worddava82efe39f46a0a1471308b4ebf1b734c.png|height=302,width=555!
+
+Open administration view on bonitaXP and install the bar generated file:
+
+!worddav1ca90928755b848631d0916a42b3458d.png|height=296,width=624!
+\\
+!worddav52ff81943270f1ae891a730eb6157e8c.png|height=296,width=624!
+
+h1. {anchor:_Toc293675720}Deployment under JBOSS.
+
+Follow the right document to have a jboos bundle that contains PLF and Bonita.
+
+h1. {anchor:_Toc293675721}Description of bonita wars.
+
+* bonita.war: this application contains the bonita engine and allow us tu show the UXP.
+* bonita-server-rest.war: this application contains the REST api delivered by Bonita to allow call bonita services from exo product.
+* bonita-todo.war: this application contain a customization of UXP that we can show it from "todo-list" gadget

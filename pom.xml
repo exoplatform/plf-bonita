@@ -1,0 +1,38 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+	<parent>
+		<groupId>org.exoplatform.platform</groupId>
+		<artifactId>exo.platform.parent</artifactId>
+		<version>3.0.6-SNAPSHOT</version>
+	</parent>
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>org.exoplatform.bonita</groupId>
+	<artifactId>exo.bonita.parent</artifactId>
+	<version>1.0.0-SNAPSHOT</version>
+	<packaging>pom</packaging>
+	<name>eXo Platform for Bonita</name>
+	<description>Bonita extension for Platform</description>
+	<scm>
+		<connection>scm:svn:http://svn.exoplatform.org/projects/plfbonita/branches/1.0.x</connection>
+		<developerConnection>scm:svn:http://svn.exoplatform.org/projects/plfbonita/branches/1.0.x</developerConnection>
+		<url>http://fisheye.exoplatform.org/browse/plfbonita/branches/1.0.x</url>
+	</scm>
+	<properties>
+		<org.exoplatform.platform.version>3.0.6-SNAPSHOT</org.exoplatform.platform.version>
+		<bonitasoft.version>5.5.1</bonitasoft.version>
+		<h2.version>1.2.139</h2.version>
+		<tagsoup.version>1.2</tagsoup.version>
+		<metadata.version>2.4.0-beta-1</metadata.version>
+	</properties>
+	<modules>
+		<module>component</module>
+		<module>web</module>
+		<module>sample</module>
+		<module>extension</module>
+		<module>server</module>
+		<module>migration</module>
+		<module>doc</module>
+		<module>packaging</module>
+	</modules>
+</project>

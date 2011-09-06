@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Default message bundle
+-->
+<messageBundle>
+  <msg name="label">Liste des processus</msg>
+  <msg name="No_processes">Pas des processus deployés.</msg>
+</messageBundle>

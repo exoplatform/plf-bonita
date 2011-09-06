@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>org.exoplatform.bonita</groupId>
+		<artifactId>exo.bonita.packaging.tomcat</artifactId>
+		<version>1.0.0-SNAPSHOT</version>
+	</parent>
+	<artifactId>exo.bonita.packaging.tomcat.assembly</artifactId>
+	<packaging>pom</packaging>
+	<name>eXo Platform for Bonita - Packaging - Tomcat - Assembly</name>
+	<dependencies>
+		<!-- PLATFORM -->
+		<dependency>
+			<groupId>org.exoplatform.platform</groupId>
+			<artifactId>exo.platform.packaging.assembly</artifactId>
+			<version>${org.exoplatform.platform.version}</version>
+			<type>pom</type>
+			<scope>import</scope>
+		</dependency>
+
+		<!-- BONITASOFT -->
+		<dependency>
+			<groupId>org.exoplatform.bonita</groupId>
+			<artifactId>exo.bonita.packaging.module</artifactId>
+			<version>${project.version}</version>
+			<type>js</type>
+		</dependency>
+		<dependency>
+			<groupId>org.exoplatform.bonita</groupId>
+			<artifactId>exo.bonita.packaging.product</artifactId>
+			<version>${project.version}</version>
+			<type>js</type>
+		</dependency>
+
+		<dependency>
+			<groupId>org.exoplatform.bonita</groupId>
+			<artifactId>exo.bonita.component.services</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.exoplatform.bonita</groupId>
+			<artifactId>exo.bonita.component.filter</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.exoplatform.bonita</groupId>
+			<artifactId>exo.bonita.component.uiextension</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+
+
+		<dependency>
+			<groupId>org.exoplatform.bonita</groupId>
+			<artifactId>exo.bonita.extension.config</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.exoplatform.bonita</groupId>
+			<artifactId>exo.bonita.extension.webapp</artifactId>
+			<version>${project.version}</version>
+			<type>war</type>
+		</dependency>
+		<dependency>
+			<groupId>org.exoplatform.bonita</groupId>
+			<artifactId>exo.bonita.extension.portlet</artifactId>
+			<version>${project.version}</version>
+			<type>war</type>
+		</dependency>
+
+		<dependency>
+			<groupId>org.exoplatform.bonita</groupId>
+			<artifactId>exo.bonita.server.tomcat.patch</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.exoplatform.bonita</groupId>
+			<artifactId>exo.bonita.server.jboss.patch</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+
+
+		<dependency>
+			<groupId>org.exoplatform.bonita</groupId>
+			<artifactId>exo.bonita.web.bonita</artifactId>
+			<version>${project.version}</version>
+			<type>war</type>
+		</dependency>
+		<dependency>
+			<groupId>org.exoplatform.bonita</groupId>
+			<artifactId>exo.bonita.web.bonita-server-rest</artifactId>
+			<version>${project.version}</version>
+			<type>war</type>
+		</dependency>
+
+		<dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+			<version>${h2.version}</version>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<finalName>Platform_for_Bonita-${project.version}-tomcat</finalName>
+		<plugins>
+			<!-- check-out exobuild -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-dependency-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>unpack-dependencies</id>
+						<phase>generate-resources</phase>
+						<goals>
+							<goal>unpack</goal>
+						</goals>
+						<configuration>
+							<overWriteSnapshots>true</overWriteSnapshots>
+							<artifactItems>
+								<artifactItem>
+									<groupId>org.exoplatform.tool</groupId>
+									<artifactId>exopackage</artifactId>
+									<version>${org.exoplatform.exopackage.version}</version>
+									<type>zip</type>
+									<outputDirectory>target/exopackage</outputDirectory>
+								</artifactItem>
+							</artifactItems>
+						</configuration>
+					</execution>
+					<execution>
+						<id>copy-dependencies</id>
+						<phase>compile</phase>
+						<goals>
+							<goal>copy-dependencies</goal>
+						</goals>
+						<configuration>
+							<includeTypes>js</includeTypes>
+							<stripVersion>true</stripVersion>
+							<outputDirectory>${project.build.directory}/exopackage-conf</outputDirectory>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<!-- Ensure your environment is correctly setup -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-enforcer-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>check-environment-ready</id>
+						<goals>
+							<goal>enforce</goal>
+						</goals>
+						<configuration>
+							<rules>
+								<requireProperty>
+									<property>exo.projects.directory.dependencies</property>
+									<message>You must define the property exo.projects.directory.dependencies to
+										give the path to the directory where you store your applications servers</message>
+								</requireProperty>
+								<requireProperty>
+									<property>exo.projects.app.tomcat.version</property>
+									<message>You must define the property exo.projects.app.tomcat.version to
+										give the name of the directory where is stored tomcat</message>
+								</requireProperty>
+								<requireFilesExist>
+									<files>
+										<file>${exo.projects.directory.dependencies}/${exo.projects.app.tomcat.version}/</file>
+									</files>
+									<message>The following Tomcat directory doesn't exist :
+										${exo.projects.directory.dependencies}/${exo.projects.app.tomcat.version}</message>
+								</requireFilesExist>
+							</rules>
+							<fail>true</fail>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<!-- run eXoBuild -->
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>exec-maven-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>01-tomcat-exopackage</id>
+						<!-- create base tomcat -->
+						<phase>prepare-package</phase>
+						<configuration>
+							<executable>java</executable>
+							<workingDirectory>${basedir}</workingDirectory>
+							<arguments>
+								<argument>-Dexo.package.home=${basedir}/target/exopackage</argument>
+								<argument>-Dexo.current.dir=${basedir}</argument>
+								<argument>-Dexo.base.dir=${exo.projects.directory.base}</argument>
+								<argument>-Dexo.conf.dir=${basedir}/target/exopackage-conf</argument>
+								<argument>-Dexo.working.dir=${basedir}/target</argument>
+								<argument>-Dexo.dep.dir=${exo.projects.directory.dependencies}</argument>
+								<argument>-Dexo.m2.repos=file:${settings.localRepository}</argument>
+								<argument>-Dclean.server=${exo.projects.app.tomcat.version}</argument>
+								<argument>-Dexo.m2.home=${maven.home}</argument>
+								<argument>-Xshare:auto</argument>
+								<argument>-Xms128m</argument>
+								<argument>-Xmx1220m</argument>
+								<argument>-XX:MaxPermSize=128M</argument>
+								<argument>-classpath</argument>
+								<argument>${basedir}/target/exopackage/lib/js.jar</argument>
+								<argument>org.mozilla.javascript.tools.shell.Main</argument>
+								<argument>${basedir}/target/exopackage/javascript/eXo/eXo.js</argument>
+								<argument>exobuild</argument>
+								<argument>--product=exo.bonita</argument>
+								<argument>--deploy=tomcat</argument>
+							</arguments>
+						</configuration>
+						<goals>
+							<goal>exec</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+
+	<profiles>
+		<profile>
+			<id>distrib</id>
+			<build>
+				<plugins>
+					<!-- create zip archives -->
+					<plugin>
+						<artifactId>maven-assembly-plugin</artifactId>
+						<executions>
+							<execution>
+								<id>assembly</id>
+								<phase>package</phase>
+								<goals>
+									<goal>single</goal>
+								</goals>
+								<configuration>
+									<descriptors>
+										<descriptor>src/main/assembly/tomcat-archive.xml</descriptor>
+										<descriptor>src/main/assembly/chatserver-archive.xml</descriptor>
+									</descriptors>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
+</project>

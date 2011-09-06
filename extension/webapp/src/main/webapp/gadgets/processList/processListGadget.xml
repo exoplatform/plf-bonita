@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Module>
+	<ModulePrefs title="BonitaProcessList gadget" author="eXoPlatform">
+	  <Locale messages="locale/ALL_ALL.xml" />
+	  <Locale lang="en" messages="locale/en_ALL.xml" />
+	  <Locale lang="fr" messages="locale/fr_ALL.xml" />  
+	  <Require feature="dynamic-height" />
+	  <Require feature="opensocial-0.8" />
+	  <Require feature="settitle" />
+	  <Require feature="views" />
+	  <Require feature="minimessage" />
+	</ModulePrefs>
+	<Content type="html">
+	
+		<![CDATA[
+			<div class="UIGadgetThemes UIYellowThemes">
+				<div id="more_spaces">
+					<div class="TitGad ClearFix"><!-- <a href="#" class="IconDropDown">Refresh</a>-->
+						<div id="process" class="ContTit"></div>
+					</div>
+				</div>
+				<div id="myspaces_id" class="GadCont MySpace">
+					<div class="NoneSpace" id="NoneSpace"></div>
+				</div>
+			</div>
+			
+			<link id="CoreSkin" rel="stylesheet" type="text/css" href="style.css" />
+			<script type="text/javascript" src="processList.js"></script>
+			<script type="text/javascript" src="Locale.js"></script>
+			<script type="text/javascript">
+				gadgets.util.registerOnLoadHandler(init);
+			</script>
+		]]>
+	</Content>
+</Module>

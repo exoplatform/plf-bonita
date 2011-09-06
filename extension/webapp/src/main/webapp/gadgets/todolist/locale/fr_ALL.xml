@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Default message bundle
+-->
+<messageBundle>
+  <msg name="my_todos">Mes tâches</msg>
+  <msg name="more_link_label">Montrer Tout</msg>
+  <msg name="has_no_task">Vous n'avez pas des tâches.</msg>
+</messageBundle>
