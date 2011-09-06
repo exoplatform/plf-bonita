@@ -19,46 +19,16 @@
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>org.exoplatform.bonita</groupId>
-		<artifactId>exo.bonita.sample.workflow</artifactId>
+		<artifactId>exo.bonita.sample</artifactId>
 		<version>1.0.0-SNAPSHOT</version>
 	</parent>
-	<artifactId>exo.bonita.sample.workflow.leave</artifactId>
+	<artifactId>exo.bonita.sample.workflow</artifactId>
 	<packaging>pom</packaging>
-	<name>eXo Platform for Bonita - Leave work Workflow Sample</name>
-	<description>Leave work Workflow Sample</description>
-	<profiles>
-		<profile>
-			<id>distrib</id>
-			<dependencies>
-				<dependency>
-					<groupId>org.bonitasoft.connectors</groupId>
-					<artifactId>bonita</artifactId>
-					<version>${bonitasoft.version}</version>
-				</dependency>
-			</dependencies>
-			<build>
-				<finalName>LeaveApplication-${project.version}.bar</finalName>
-				<plugins>
-					<plugin>
-						<artifactId>maven-assembly-plugin</artifactId>
-						<executions>
-							<execution>
-								<id>distribution</id>
-								<phase>package</phase>
-								<goals>
-									<goal>single</goal>
-								</goals>
-								<configuration>
-									<descriptors>
-										<descriptor>src/main/assembly/leave.xml</descriptor>
-									</descriptors>
-									<appendAssemblyId>false</appendAssemblyId>
-								</configuration>
-							</execution>
-						</executions>
-					</plugin>
-				</plugins>
-			</build>
-		</profile>
-	</profiles>
+	<name>eXo Platform for Bonita - Workflow Samples</name>
+	<description>Bonita Workflow Samples</description>
+	<modules>
+		<module>cmis</module>
+		<module>leave</module>
+		<module>publication</module>
+	</modules>
 </project>

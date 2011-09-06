@@ -26,15 +26,8 @@
 	<packaging>pom</packaging>
 	<name>eXo Platform for Bonita - Samples</name>
 	<description>Bonita Samples</description>
-	<profiles>
-		<profile>
-			<id>distrib</id>
-			<modules>
-				<module>workflow/cmis</module>
-				<module>workflow/leave</module>
-				<module>workflow/publication</module>
-				<module>delivery</module>
-			</modules>
-		</profile>
-	</profiles>
+	<modules>
+		<module>workflow</module>
+		<module>delivery</module>
+	</modules>
 </project>
