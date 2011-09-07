@@ -83,7 +83,6 @@ public class BonitaService implements ResourceContainer {
                 if (str3.contains("<string>link</string>")) {
                   next = reader2.readLine();
                   next = next.replaceAll("string", "doclink");
-                  next = next.replaceAll("/string", "/doclink");
                   buffer.append(next);
                 }
               }

@@ -11,8 +11,6 @@ import javax.ws.rs.FormParam;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 
-import org.exoplatform.container.ExoContainer;
-import org.exoplatform.container.PortalContainer;
 import org.exoplatform.services.jcr.RepositoryService;
 import org.exoplatform.services.jcr.config.RepositoryConfigurationException;
 import org.exoplatform.services.jcr.core.ManageableRepository;
@@ -25,6 +23,11 @@ import org.exoplatform.services.rest.resource.ResourceContainer;
 public class GetBonitaLifeCycle implements ResourceContainer {
 
   private static Log logger = ExoLogger.getLogger(GetBonitaLifeCycle.class);
+  private RepositoryService repositoryService;
+
+  public GetBonitaLifeCycle(RepositoryService repositoryService) {
+    this.repositoryService = repositoryService;
+  }
 
   /**
    * allow to add a property to given node have the information that this
@@ -40,19 +43,19 @@ public class GetBonitaLifeCycle implements ResourceContainer {
     if (logger.isDebugEnabled()) {
       logger.debug("### Starting getCycle Action ...");
     }
-    Session session = null;
-    try {
-      ExoContainer container = PortalContainer.getInstance();
-      String[] pathtab = link.split("/");
-      RepositoryService repositoryService = (RepositoryService) container.getComponentInstanceOfType(RepositoryService.class);
-      ManageableRepository repository = repositoryService.getRepository(pathtab[1]);
-      synchronized (repository) {
+    String[] pathtab = link.split("/");
+    ManageableRepository repository = repositoryService.getRepository(pathtab[1]);
+    // This bloc has to be synchronized, the use of same session with two
+    // threads same time could cause a problem
+    synchronized (repository) {
+      Session session = null;
+      try {
         session = SessionProvider.createSystemProvider().getSession(pathtab[2], repository);
-        String filePath = "";
+        String lifecycleNodePath = "";
         for (int i = 3; i < pathtab.length; i++) {
-          filePath += "/" + pathtab[i];
+          lifecycleNodePath += "/" + pathtab[i];
         }
-        Node node = (Node) session.getItem(filePath);
+        Node node = (Node) session.getItem(lifecycleNodePath);
         if (node.isNodeType("exo:bonitaLifecycle")) {
           if (node.hasProperty("exo:bonitaEnrolledIn")) {
             node.setProperty("exo:bonitaEnrolledIn", inlife);
@@ -66,10 +69,10 @@ public class GetBonitaLifeCycle implements ResourceContainer {
           }
         }
         session.save();
-      }
-    } finally {
-      if (session != null) {
-        session.logout();
+      } finally {
+        if (session != null) {
+          session.logout();
+        }
       }
     }
   }

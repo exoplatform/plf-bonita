@@ -1,18 +1,18 @@
 package org.exoplatform.bonitasoft.services.rest.comment;
 
+import javax.jcr.LoginException;
+import javax.jcr.NoSuchWorkspaceException;
 import javax.jcr.Node;
+import javax.jcr.RepositoryException;
 import javax.jcr.Session;
-import javax.jcr.query.Query;
-import javax.jcr.query.QueryManager;
-import javax.jcr.query.QueryResult;
 import javax.ws.rs.FormParam;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 
-import org.exoplatform.container.ExoContainer;
-import org.exoplatform.container.PortalContainer;
 import org.exoplatform.services.jcr.RepositoryService;
+import org.exoplatform.services.jcr.config.RepositoryConfigurationException;
 import org.exoplatform.services.jcr.core.ManageableRepository;
+import org.exoplatform.services.jcr.ext.common.SessionProvider;
 import org.exoplatform.services.log.ExoLogger;
 import org.exoplatform.services.log.Log;
 import org.exoplatform.services.rest.resource.ResourceContainer;
@@ -20,6 +20,11 @@ import org.exoplatform.services.rest.resource.ResourceContainer;
 @Path("ManageComment")
 public class ManageComment implements ResourceContainer {
   private static Log logger = ExoLogger.getLogger(ManageComment.class);
+  private RepositoryService repositoryService;
+
+  public ManageComment(RepositoryService repositoryService) {
+    this.repositoryService = repositoryService;
+  }
 
   /**
    * return the comment saved on bonita engine
@@ -29,50 +34,45 @@ public class ManageComment implements ResourceContainer {
    */
   @POST
   @Path("addComment")
-  public void addComment(@FormParam("link") String link, @FormParam("commentaires") String comment) {
+  public void addComment(@FormParam("link") String link, @FormParam("commentaires") String comment) throws LoginException,
+      NoSuchWorkspaceException, RepositoryException, RepositoryConfigurationException {
 
     if (logger.isDebugEnabled()) {
       logger.debug("### Starting addComment Action ...");
     }
-    try {
-      ExoContainer container = PortalContainer.getInstance();
-      String[] pathtab;
-      String Filename = "";
-      pathtab = link.split("/");
-      RepositoryService repositoryService = (RepositoryService) container.getComponentInstanceOfType(RepositoryService.class);
-      ManageableRepository manageableRepository = repositoryService.getRepository(pathtab[1]);
-      Session session = manageableRepository.getSystemSession(pathtab[2]);
-      QueryManager queryManager = session.getWorkspace().getQueryManager();
-      StringBuffer buffer = new StringBuffer();
-      for (int i = 3; i < pathtab.length; i++) {
-        Filename += "/" + pathtab[i];
-      }
-      link = Filename;
-      if (logger.isDebugEnabled()) {
-        logger.debug("### get Node from this path: " + link);
-      }
-      buffer.append("select * from nt:base where jcr:path= '").append(link).append("'");
-      Query query = queryManager.createQuery(buffer.toString(), Query.SQL);
-      QueryResult queryResult = query.execute();
-      Node node = queryResult.getNodes().nextNode();
-      if (node.isNodeType("exo:userComment")) {
-        if (node.hasProperty("exo:comment")) {
-          node.setProperty("exo:comment", comment);
-          node.save();
-        }
-      } else {
-        if (node.canAddMixin("exo:userComment")) {
-          node.addMixin("exo:userComment");
-          node.save();
-          node.setProperty("exo:comment", comment);
+    String[] pathtab;
+    pathtab = link.split("/");
 
-        }
-      }
-      session.save();
+    ManageableRepository repository = repositoryService.getRepository(pathtab[1]);
+    // This bloc has to be synchronized, the use of same session with two
+    // threads same time could cause a problem
+    synchronized (repository) {
+      Session session = null;
+      try {
+        session = SessionProvider.createSystemProvider().getSession(pathtab[2], repository);
 
-    } catch (Exception e) {
-      if (logger.isDebugEnabled()) {
-        logger.debug(e.getStackTrace());
+        String commentNodePath = "";
+        for (int i = 3; i < pathtab.length; i++) {
+          commentNodePath += "/" + pathtab[i];
+        }
+        Node node = (Node) session.getItem(commentNodePath);
+        if (node.isNodeType("exo:userComment")) {
+          if (node.hasProperty("exo:comment")) {
+            node.setProperty("exo:comment", comment);
+            node.save();
+          }
+        } else {
+          if (node.canAddMixin("exo:userComment")) {
+            node.addMixin("exo:userComment");
+            node.save();
+            node.setProperty("exo:comment", comment);
+          }
+        }
+        session.save();
+      } finally {
+        if (session != null) {
+          session.logout();
+        }
       }
     }
   }
