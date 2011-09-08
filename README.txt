@@ -26,7 +26,7 @@ This release contains:
  - Prerequisites : 
     Java 6.
 	Make sure your maven settings are up-to-date.
-	Bonita Licences.
+	Bonita Licenses.
 
  - Check-out the source from  :
    https://svn.exoplatform.org/projects/plfbonita/
@@ -37,8 +37,8 @@ This release contains:
  - Go into the folder /packaging/tomcat/pkg/target/tomcat
    Here is your eXo Platform for Bonita Tomcat distribution
 
- - Go into the folder /packaging/tomcat/pkg/target/tomcat/bonita/server/licences/
-   Here you have to drop your Bonita Licences
+ - Go into the folder /packaging/tomcat/pkg/target/tomcat/bonita/server/licenses/
+   Here you have to drop your Bonita Licenses
 
  - To build also documentations and archives used for distribution
    mvn clean install -Pexo-private,distrib 

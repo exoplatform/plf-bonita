@@ -8,7 +8,7 @@
 		<init-params>
 			<value-param>
 				<name>publication.process.path</name>
-				<value>PublicationProcess--1.0</value>
+				<value>/PublicationProcess--1.0</value>
 			</value-param>
 		</init-params>
 	</component>
@@ -20,17 +20,17 @@
 	</component>
 	<component>
 		<type>org.exoplatform.bonitasoft.services.rest.mail.ManageMail</type>
-	</component>
-	<component>
-		<type>org.exoplatform.bonitasoft.services.rest.comment.ManageComment</type>
-	</component>
-	<component>
-		<type>org.exoplatform.bonitasoft.services.rest.BonitaLifecycle.GetBonitaLifeCycle</type>
 		<init-params>
 			<value-param>
 				<name>mail.sender</name>
 				<value>test@localhost.com</value>
 			</value-param>
 		</init-params>
+	</component>
+	<component>
+		<type>org.exoplatform.bonitasoft.services.rest.comment.ManageComment</type>
+	</component>
+	<component>
+		<type>org.exoplatform.bonitasoft.services.rest.BonitaLifecycle.GetBonitaLifeCycle</type>
 	</component>
 </configuration>

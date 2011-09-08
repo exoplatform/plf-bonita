@@ -31,9 +31,7 @@ import org.exoplatform.webui.core.lifecycle.UIApplicationLifecycle;
 
 @ComponentConfig(lifecycle = UIApplicationLifecycle.class, template = "app:/groovy/portal/webui/component/UIIFramePortlet.gtmpl")
 public class UIParametrizedIFramePortlet extends UIPortletApplication {
-	public UIParametrizedIFramePortlet() throws Exception {
-
-	}
+	public UIParametrizedIFramePortlet() throws Exception {}
 
 	public String getURL() {
 		HttpServletRequest request = Util.getPortalRequestContext().getRequest();
