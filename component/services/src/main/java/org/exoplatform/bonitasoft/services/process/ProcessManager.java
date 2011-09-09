@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Map;
 
 import javax.jcr.Node;
-import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.httpclient.Credentials;
 import org.apache.commons.httpclient.HostConfiguration;
@@ -51,9 +50,10 @@ public class ProcessManager {
    * 
    * @param node
    * @param request
+   * @return List of messages
    * @throws Exception
    */
-  public void startProcess(Node node, HttpServletRequest request) throws Exception {
+  public List<String> startProcess(Node node, String userId) throws Exception {
 
     PostMethod httpMethod = new PostMethod(publicationProcessURL);
     List<String> messages = new ArrayList<String>();
@@ -76,7 +76,7 @@ public class ProcessManager {
       httpMethod.setDoAuthentication(true);
       httpMethod.setRequestHeader("ContentType", "application/x-www-form-urlencoded;charset=UTF-8");
 
-      NameValuePair nameValuePair = new NameValuePair("options", "user:" + request.getRemoteUser());
+      NameValuePair nameValuePair = new NameValuePair("options", "user:" + userId);
       NameValuePair[] nameValuePairs = new NameValuePair[2];
       nameValuePairs[0] = nameValuePair;
 
@@ -96,21 +96,13 @@ public class ProcessManager {
 
       httpMethod.setRequestBody(nameValuePairs);
       httpClient.executeMethod(httpMethod);
-
-      String response = httpMethod.getResponseBodyAsString();
-      if (LOG.isInfoEnabled()) {
-        LOG.info(response);
-      }
-      messages.add("ok");
     } catch (Exception e) {
-      if (LOG.isDebugEnabled()) {
-        LOG.debug(e.getStackTrace());
-      }
-      messages.add("ko");
+      LOG.error("Error when starting an instance of publicationProcess on node " + node.getPath(), e);
+      messages.add("Error when starting an instance of publicationProcess.");
     } finally {
       httpMethod.releaseConnection();
-      request.setAttribute("messages", messages);
     }
+    return messages;
   }
 
 }

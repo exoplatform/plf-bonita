@@ -105,7 +105,6 @@ public class UIApproveAction extends UIComponent {
 
   public static class ApproveActionListener extends EventListener<UIApproveAction> {
     public void execute(Event<UIApproveAction> event) throws Exception {
-
       if (logger.isDebugEnabled()) {
         logger.debug("### Starting Approve Action ...");
       }
@@ -115,7 +114,8 @@ public class UIApproveAction extends UIComponent {
       Node node = uiApproveAction.getEditingNode();
       ExoContainer container = PortalContainer.getInstance();
       ProcessManager processManager = (ProcessManager) container.getComponentInstanceOfType(ProcessManager.class);
-      processManager.startProcess(node, request);
+      List<String> messages = processManager.startProcess(node, request.getRemoteUser());
+      request.setAttribute("messages", messages);
     }
   }
 
