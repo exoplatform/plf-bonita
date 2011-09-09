@@ -38,7 +38,7 @@
 		<dependencySet>
 			<outputDirectory>libs</outputDirectory>
 			<includes>
-				<include>org.exoplatform.bonita:exo.platform.bonita.component.utils</include>
+				<include>org.exoplatform.bonita:exo.bonita.sample.workflow.common</include>
 			</includes>
 		</dependencySet>
 	</dependencySets>

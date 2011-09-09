@@ -27,6 +27,7 @@
 	<name>eXo Platform for Bonita - Workflow Samples</name>
 	<description>Bonita Workflow Samples</description>
 	<modules>
+		<module>common</module>
 		<module>cmis</module>
 		<module>leave</module>
 		<module>publication</module>

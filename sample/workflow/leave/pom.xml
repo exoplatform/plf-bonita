@@ -35,6 +35,11 @@
 					<artifactId>bonita</artifactId>
 					<version>${bonitasoft.version}</version>
 				</dependency>
+				<dependency>
+					<groupId>org.exoplatform.bonita</groupId>
+					<artifactId>exo.bonita.sample.workflow.common</artifactId>
+					<version>${project.version}</version>
+				</dependency>
 			</dependencies>
 			<build>
 				<finalName>LeaveApplication-${project.version}.bar</finalName>
