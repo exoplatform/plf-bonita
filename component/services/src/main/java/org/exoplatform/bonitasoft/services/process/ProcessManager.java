@@ -96,9 +96,10 @@ public class ProcessManager {
 
       httpMethod.setRequestBody(nameValuePairs);
       httpClient.executeMethod(httpMethod);
+      messages.add("ok");
     } catch (Exception e) {
       LOG.error("Error when starting an instance of publicationProcess on node " + node.getPath(), e);
-      messages.add("Error when starting an instance of publicationProcess.");
+      messages.add("ko");
     } finally {
       httpMethod.releaseConnection();
     }
