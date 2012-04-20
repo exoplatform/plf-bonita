@@ -108,7 +108,7 @@
 											<groupId>org.exoplatform.platform</groupId>
 											<artifactId>exo.platform.packaging.tomcat</artifactId>
 											<type>zip</type>
-											<version>3.5.2-SNAPSHOT</version>
+											<version>3.5.2</version>
 											<outputDirectory>${project.build.directory}</outputDirectory>
 											<excludes>conf/</excludes>
 										</artifactItem>
@@ -202,40 +202,50 @@
 								<id>02-prepare-bonita</id>
 								<phase>prepare-package</phase>
 								<configuration>
-									<target>
-										<copy file="${project.basedir}/src/main/resources/bin/gatein.bat" tofile="${project.build.directory}/tomcat-bundle/bin/gatein.bat" overwrite="true" />
-										<copy file="${project.basedir}/src/main/resources/bin/gatein.sh" tofile="${project.build.directory}/tomcat-bundle/bin/gatein.sh" overwrite="true" />
-										<copy file="${project.basedir}/src/main/resources/conf/server.xml" tofile="${project.build.directory}/tomcat-bundle/conf/server.sh" overwrite="true" />
-										<copy file="${project.basedir}/src/main/resources/conf/logging.properties" tofile="${project.build.directory}/tomcat-bundle/conf/logging.properties" overwrite="true" />
-										<copy file="${project.basedir}/src/main/resources/conf/jaas.conf" tofile="${project.build.directory}/tomcat-bundle/conf/jaas.conf" overwrite="true" />
-										<copy file="${project.basedir}/src/main/resources/conf/context.xml" tofile="${project.build.directory}/tomcat-bundle/conf/context.xml" overwrite="true" />
-										<copy todir="${project.build.directory}/tomcat-bundle/bonita">
-											<fileset dir="${project.basedir}/src/main/resources/bonita" includes="**/*" />
-										</copy>
-										<unzip src="${tomcat.webapps.dir}/bonita.war" dest="${tomcat.webapps.dir}/plf-bonita" />
-										<copy file="${project.basedir}/src/main/resources/webapps/bonita/webapp/WEB-INF/web.xml" tofile="${tomcat.webapps.dir}/plf-bonita/WEB-INF/web.xml" overwrite="true" />
+                                    <target>
+                                        <!--
+                                                  <copy file="${project.basedir}/src/main/resources/bin/gatein.bat" tofile="${project.build.directory}/tomcat-bundle/bin/gatein.bat" overwrite="true" />
+                                                  <copy file="${project.basedir}/src/main/resources/bin/gatein.sh" tofile="${project.build.directory}/tomcat-bundle/bin/gatein.sh" overwrite="true" />
+                                                  -->
+                                        <copy file="${project.basedir}/src/main/resources/bin/setenv.bat" tofile="${project.build.directory}/tomcat-bundle/bin/setenv.bat" overwrite="true" />
+                                        <copy file="${project.basedir}/src/main/resources/bin/setenv.sh" tofile="${project.build.directory}/tomcat-bundle/bin/setenv.sh" overwrite="true" />
+                                        <copy file="${project.basedir}/src/main/resources/conf/server.xml" tofile="${project.build.directory}/tomcat-bundle/conf/server.xml" overwrite="true" />
+                                        <copy file="${project.basedir}/src/main/resources/conf/logging.properties" tofile="${project.build.directory}/tomcat-bundle/conf/logging.properties" overwrite="true" />
+                                        <copy file="${project.basedir}/src/main/resources/conf/jaas.conf" tofile="${project.build.directory}/tomcat-bundle/conf/jaas.conf" overwrite="true" />
+                                        <copy file="${project.basedir}/src/main/resources/conf/context.xml" tofile="${project.build.directory}/tomcat-bundle/conf/context.xml" overwrite="true" />
+                                        <copy todir="${project.build.directory}/tomcat-bundle/bonita">
+                                            <fileset dir="${project.basedir}/src/main/resources/bonita" includes="**/*" />
+                                        </copy>
+                                        <unzip src="${tomcat.webapps.dir}/bonita.war" dest="${tomcat.webapps.dir}/plf-bonita" />
+                                        <copy file="${project.basedir}/src/main/resources/webapps/bonita/webapp/WEB-INF/web.xml" tofile="${tomcat.webapps.dir}/plf-bonita/WEB-INF/web.xml" overwrite="true" />
+                                        <copy file="${project.basedir}/src/main/resources/webapps/bonita/webapp/WEB-INF/classes/html/bonita_default_confirm.html" tofile="${tomcat.webapps.dir}/plf-bonita/WEB-INF/classes/html/bonita_default_confirm.html" overwrite="true" />
 
-										<copy file="${project.basedir}/src/main/resources/webapps/bonita/webapp/console/gwt/chrome/chrome.css" tofile="${tomcat.webapps.dir}/plf-bonita/console/gwt/chrome/chrome.css" overwrite="true" />
-										
-										<copy todir="${tomcat.webapps.dir}/plf-bonita/WEB-INF/lib">
-											<fileset file="${tomcat.lib.dir}/exo.platform.bonita.component.filter-${project.version}.jar"/>
-										</copy>
+                                        <copy file="${project.basedir}/src/main/resources/webapps/bonita/webapp/console/gwt/chrome/chrome.css" tofile="${tomcat.webapps.dir}/plf-bonita/console/gwt/chrome/chrome.css" overwrite="true" />
 
-										<!--
-										<copy file="${tomcat.lib.dir}/exo.platform.bonita.component.filter-${project.version}.jar" todir="${tomcat.webapps.dir}/plf-bonita/lib" />
-										-->
-										<zip destfile="${tomcat.webapps.dir}/bonita.war" basedir="${tomcat.webapps.dir}/plf-bonita" />
+                                        <copy todir="${tomcat.webapps.dir}/plf-bonita/WEB-INF/lib">
+                                            <fileset file="${tomcat.lib.dir}/exo.platform.bonita.component.filter-${project.version}.jar"/>
+                                        </copy>
 
-										<delete dir="${tomcat.webapps.dir}/plf-bonita" />
+                                        <!--
+                                                  <copy file="${tomcat.lib.dir}/exo.platform.bonita.component.filter-${project.version}.jar" todir="${tomcat.webapps.dir}/plf-bonita/lib" />
+                                                  -->
+                                        <zip destfile="${tomcat.webapps.dir}/bonita.war" basedir="${tomcat.webapps.dir}/plf-bonita" />
 
-										<delete>
+                                        <delete dir="${tomcat.webapps.dir}/plf-bonita" />
 
-											<!-- Identity Filter to set current user on BUXP -->
+                                        <delete>
 
-											<fileset dir="${tomcat.lib.dir}" includes="exo.platform.bonita.component.filter-${project.version}.jar" />
-										</delete>	
+                                            <!-- Identity Filter to set current user on BUXP -->
 
-									</target>
+                                            <fileset dir="${tomcat.lib.dir}" includes="exo.platform.bonita.component.filter-${project.version}.jar" />
+
+                                            <!-- Delete jbpm process -->
+
+                                            <fileset dir="${tomcat.lib.dir}" includes="exo-ecms-ext-workflow-bp-jbpm-*.jar" />
+
+                                        </delete>
+
+                                    </target>
 								</configuration>
 								<goals>
 									<goal>run</goal>
