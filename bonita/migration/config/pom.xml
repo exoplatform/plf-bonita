@@ -10,7 +10,7 @@
 	<packaging>pom</packaging>
 	<name>eXo Platform for Bonita - Migration configuration</name>
 	<build>
-		<finalName>bos-migration-guide-${project.version}</finalName>
+		<finalName>bos-migration-config-${project.version}</finalName>
 		<plugins>
 			<plugin>
 				<artifactId>maven-assembly-plugin</artifactId>
