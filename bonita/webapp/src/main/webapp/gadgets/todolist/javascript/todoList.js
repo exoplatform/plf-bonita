@@ -39,7 +39,7 @@ getXhr=function (){
 getList=function(xhr){
  
     var xml= xhr.responseXML;
-    var baseURL = host + "/portal/bpm/workflow?url=";
+    var baseURL = host + "/portal/intranet/workflow?url=";
     var urlXp = encodeURIComponent(host+"/bonita-todo/console/BonitaConsole.html?#CaseList/lab:Inbox");
 	//document.getElementById('more').innerHTML ="<a id='More' href='/portal/private/intranet/bonitaTODO' target='_parent' class='IconDropDown'>"+eXo.social.Locale.getMsg('more_link_label')+"</a><div class='ContTit'>"+eXo.social.Locale.getMsg('my_todos')+"</div>";
 	var activityinstance=xml.getElementsByTagName('ActivityInstance');

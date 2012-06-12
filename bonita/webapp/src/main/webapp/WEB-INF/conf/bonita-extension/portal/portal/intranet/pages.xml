@@ -120,7 +120,7 @@
 							</preference>
 							<preference>
 								<name>nodeIdentifier</name>
-								<value>/sites content/live/bpm/web contents/site artifacts/Welcome</value>
+								<value>/sites content/live/intranet/web contents/site artifacts/Welcome</value>
 								<read-only>false</read-only>
 							</preference>
 							<preference>

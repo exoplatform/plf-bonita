@@ -26,7 +26,7 @@
 	
 	<div id="TodosList-Gadget" class="UIGadgetThemes">
           <div class="TitGad ClearFix">
-            <a href="/portal/bpm/bonitaTODO" class="IconDropDown" id="ShowAll" target="_parent">__MSG_showall__</a>
+            <a href="/portal/intranet/bonitaTODO" class="IconDropDown" id="ShowAll" target="_parent">__MSG_showall__</a>
 
             <div class="ContTit">__MSG_title__</div>
           </div>

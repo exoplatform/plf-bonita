@@ -59,12 +59,12 @@
 									<string>collaboration</string>
 								</field>
 								<field name="nodePath">
-									<string>/sites content/live/bpm/css</string>
+									<string>/sites content/live/intranet/css</string>
 								</field>
 							</object>
 						</field>
 						<field name="sourcePath">
-							<string>war:/conf/bonita-extension/wcm/artifacts/site-resources/bpm/Stylesheet.xml</string>
+							<string>war:/conf/bonita-extension/wcm/artifacts/site-resources/intranet/Stylesheet.xml</string>
 						</field>
 						<field name="cleanupPublication">
 							<boolean>true</boolean>
@@ -81,12 +81,12 @@
 									<string>collaboration</string>
 								</field>
 								<field name="nodePath">
-									<string>/sites content/live/bpm/web contents/site artifacts</string>
+									<string>/sites content/live/intranet/web contents/site artifacts</string>
 								</field>
 							</object>
 						</field>
 						<field name="sourcePath">
-							<string>war:/conf/bonita-extension/wcm/artifacts/site-resources/bpm/Welcome.xml</string>
+							<string>war:/conf/bonita-extension/wcm/artifacts/site-resources/intranet/Welcome.xml</string>
 						</field>
 						<field name="cleanupPublication">
 							<boolean>true</boolean>
