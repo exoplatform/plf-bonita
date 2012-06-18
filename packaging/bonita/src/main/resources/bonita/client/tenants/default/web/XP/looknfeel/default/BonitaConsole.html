@@ -29,6 +29,7 @@
 		<div id="loading">
 			<div id="bottom-right-shadow">
 				<div id="loading-content">
+					<img src="themeResource?theme=default&location=images/large-loading.gif" />
 					<!-- Please wait while loading... -->
 				</div>
 			</div>
@@ -37,12 +38,21 @@
 
 		<div id="default_view_container" style="display: none;">
 			<div>
-				<div class="headerContainer" style="height:30px;">
-					
+				<div class="headerContainer">
+					<div id="logo"></div>
+					<div id="header_title">
+						<div id="header_subtitle">User Experience</div>
+						Bonita
+					</div>
 					<div id="bos_top_right_links" class="bos_float_right">
-						<span id="ui_mode_selector_parent" class="bos_empty_menu"> 
-							<span onclick="window.location = 'homepage?ui=admin&' + getParams(window.location.href, false)" class="identif-2" id="ui_mode_selector"></span> 
-						</span> 
+						<span id="user_id"></span> <span id="bos_locale_chooser"></span> <span
+							id="bos_user_preferences"></span> <span class="identif-2">|</span>
+						<span id="bos_about"></span> <span id="ui_mode_selector_parent"
+							class="bos_empty_menu"> <span class="identif-2">|</span> <span
+							onclick="window.location = 'homepage?ui=admin&' + getParams(window.location.href, false)" 
+							class="identif-2" id="ui_mode_selector"></span> </span> <span
+							id="bos_logout_parent" class="bos_empty_menu"> <span
+							class="identif-2">|</span> <span id="bos_logout"></span> </span>
 					</div>
 				</div>
 			</div>
@@ -53,7 +63,6 @@
 					<div id="unified_panels_top_right_corner"></div>
 					<div id="unified_panels_shadow_top"></div>
 					<div id="left_panel">
-						<div id="WidgetContainerHeaderTop"></div>
 						<div id="SystemLabelBrowserContainer"></div>
 						<div>
 							<hr class="left_panel_separator"></hr>

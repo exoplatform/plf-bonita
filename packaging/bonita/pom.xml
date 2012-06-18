@@ -62,14 +62,14 @@
 				<dependency>
 					<groupId>org.bonitasoft</groupId>
 					<artifactId>bonita</artifactId>
-					<version>5.6.1</version>
+					<version>5.6.3</version>
 					<type>war</type>
 				</dependency>
 
 				<dependency>
 					<groupId>org.bonitasoft</groupId>
 					<artifactId>bonita-server-rest</artifactId>
-					<version>5.6.1</version>
+					<version>5.6.3</version>
 					<type>war</type>
 				</dependency>
 				<dependency>
@@ -108,7 +108,7 @@
 											<groupId>org.exoplatform.platform</groupId>
 											<artifactId>exo.platform.packaging.tomcat</artifactId>
 											<type>zip</type>
-											<version>3.5.2</version>
+											<version>3.5.3</version>
 											<outputDirectory>${project.build.directory}</outputDirectory>
 											<excludes>conf/</excludes>
 										</artifactItem>
@@ -137,7 +137,7 @@
 										<artifactItem>
 											<groupId>org.bonitasoft</groupId>
 											<artifactId>bonita</artifactId>
-											<version>5.6.1</version>
+											<version>5.6.3</version>
 											<type>war</type>
 											<outputDirectory>${project.build.directory}/tomcat-bundle/webapps</outputDirectory>
 											<destFileName>bonita.war</destFileName>
@@ -145,7 +145,7 @@
 										<artifactItem>
 											<groupId>org.bonitasoft</groupId>
 											<artifactId>bonita-server-rest</artifactId>
-											<version>5.6.1</version>
+											<version>5.6.3</version>
 											<type>war</type>
 											<outputDirectory>${project.build.directory}/tomcat-bundle/webapps</outputDirectory>
 											<destFileName>bonita-server-rest.war</destFileName>
