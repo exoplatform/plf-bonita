@@ -21,6 +21,7 @@
 		<module>config</module>
 		<module>portlet</module>
 		<module>migration</module>
+        <module>samples</module>
 	</modules>
 
 </project>
