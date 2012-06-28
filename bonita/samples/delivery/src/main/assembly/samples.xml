@@ -26,21 +26,21 @@
 		<dependencySet>
 			<outputDirectory/>
 			<includes>
-				<include>org.exoplatform.bonita:exo.bonita.sample.workflow.publication</include>
+				<include>org.exoplatform.platform:exo.platform.bonita.samples.workflow.publication</include>
 			</includes>
 			<outputFileNameMapping>PublicationProcess.bar</outputFileNameMapping>
 		</dependencySet>
 		<dependencySet>
 			<outputDirectory/>
 			<includes>
-				<include>org.exoplatform.bonita:exo.bonita.sample.workflow.leave</include>
+				<include>org.exoplatform.platform:exo.platform.bonita.samples.workflow.leave</include>
 			</includes>
 			<outputFileNameMapping>LeaveApplication.bar</outputFileNameMapping>
 		</dependencySet>
 		<dependencySet>
 			<outputDirectory/>
 			<includes>
-				<include>org.exoplatform.bonita:exo.bonita.sample.workflow.cmis</include>
+				<include>org.exoplatform.platform:exo.platform.bonita.samples.workflow.cmis</include>
 			</includes>
 			<outputFileNameMapping>UploadFileInExo.bar</outputFileNameMapping>
 		</dependencySet>

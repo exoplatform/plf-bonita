@@ -31,21 +31,21 @@
 			<id>distrib</id>
 			<dependencies>
 				<dependency>
-					<groupId>org.exoplatform.bonita</groupId>
-					<artifactId>exo.bonita.sample.workflow.publication</artifactId>
-					<version>${org.exoplatform.platform.version}</version>
+					<groupId>org.exoplatform.platform</groupId>
+					<artifactId>exo.platform.bonita.samples.workflow.publication</artifactId>
+                    <version>${project.version}</version>
 					<type>zip</type>
 				</dependency>
 				<dependency>
-					<groupId>org.exoplatform.bonita</groupId>
-					<artifactId>exo.bonita.sample.workflow.leave</artifactId>
-					<version>${org.exoplatform.platform.version}</version>
+					<groupId>org.exoplatform.platform</groupId>
+					<artifactId>exo.platform.bonita.samples.workflow.leave</artifactId>
+                    <version>${project.version}</version>
 					<type>zip</type>
 				</dependency>
 				<dependency>
-					<groupId>org.exoplatform.bonita</groupId>
-					<artifactId>exo.bonita.sample.workflow.cmis</artifactId>
-					<version>${org.exoplatform.platform.version}</version>
+					<groupId>org.exoplatform.platform</groupId>
+					<artifactId>exo.platform.bonita.samples.workflow.cmis</artifactId>
+					<version>${project.version}</version>
 					<type>zip</type>
 				</dependency>
 			</dependencies>
