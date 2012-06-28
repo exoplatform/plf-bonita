@@ -28,7 +28,6 @@
   text-decoration: none;
 }
 .link_0 {
-background: url('images/minor.png') no-repeat left center;
 margin-bottom: 5px;
 padding-left: 14px;
 text-decoration: none;
@@ -36,7 +35,6 @@ display: block;
 }
 
 .link_1 {
-background: url('images/major.png') no-repeat left center;
 margin-bottom: 5px;
 padding-left: 14px;
 text-decoration: none;
@@ -44,10 +42,19 @@ display: block;
 }
 
 .link_2 {
-background: url('images/critical.png') no-repeat left center;
 margin-bottom: 5px;
-padding-left: 14px;
+padding-left: 27px;
 text-decoration: none;
 display: block;
 }
 
+.menu {
+
+color: black !important;
+font-weight: bold;
+color: lightgray;
+padding: 10px 8px;
+}
+
+.ArrowIcon {float: left; padding-top: 5px; margin-right: 10px;}
+.ArrowIcon img {width: 9px; height: 9px; background: url('images/ArrowRight.gif') no-repeat top;}

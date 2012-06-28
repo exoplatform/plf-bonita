@@ -1,5 +1,6 @@
 .bonita_transparent_body {
 	background: transparent none repeat scroll 0 0;
+	border: medium none !important;
 }
 
 /** Loading */
@@ -120,7 +121,7 @@ div#loading {
 
 .bonita_form_date {
 	background: url("../images/date_16x16.png") no-repeat scroll right center #FFF;
-	 border-top: 1px #acaeb4 solid;
+	border-top: 1px #acaeb4 solid;
     border-left: 1px #dde1e7 solid;
     border-right: 1px #dde1e7 solid;
     border-bottom: 1px #e3e9ef solid;

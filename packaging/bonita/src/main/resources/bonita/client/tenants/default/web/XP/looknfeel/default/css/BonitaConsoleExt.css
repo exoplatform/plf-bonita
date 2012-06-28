@@ -25,7 +25,7 @@
 }
 
 .item_list_content_row_title td {
-    padding-right: 12px;
+    padding-right: 7px;
     padding-top: 3px;
 }
 
@@ -215,6 +215,7 @@
 
 .bos_item_filter_editor-closed .bos_item_filter_editor_content .bos_filter_element {
 	float: left;
+	margin-right: 20px;
 }
 
 .bos_item_filter_editor-open .bos_item_filter_editor_content {
@@ -387,16 +388,6 @@
 /** Reports list (Begin) */
 .bos_report_deploy .bos_report_definition_editor {
 	width: 100%;
-}
-
-.bos_report_warning {
-	margin-left: auto;
-	margin-right: auto;
-}
-
-.bonita_report_warning_button {
-	margin-left: auto;
-	margin-right: auto;
 }
 /** Reports list (End) */
 /** Documents list (End) */

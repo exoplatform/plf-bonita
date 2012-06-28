@@ -20,13 +20,13 @@
       <!-- Description: Implementation of the documentation manager. -->
       <documentation-manager name='documentation-manager' class='org.ow2.bonita.services.impl.CMISDocumentManager'>
         <arg><string value='ATOM' /></arg>
-        <arg><string value='http://localhost:8080/xcmis/rest/cmisatom' /></arg>
-        <arg><string value='default' /></arg>
+        <arg><string value='http://localhost:8080/rest/private/cmisatom' /></arg>
+        <arg><string value='ProcessDocuments' /></arg>
         <arg>
-          <object class='org.ow2.bonita.services.impl.XCmisUserProvider'>
+          <object class='org.ow2.bonita.services.impl.ClassicCmisUserProvider'>
             <constructor>
               <arg><string value='root'/></arg>
-              <arg><string value='exo'/></arg>
+              <arg><string value='gtn'/></arg>
             </constructor>
           </object>
         </arg>
@@ -105,10 +105,12 @@
       </chainer>
 
       <!-- Description: Implementation of the authentication service. -->
+<!--
       <authentication-service name='authentication-service' class='org.ow2.bonita.services.impl.DbAuthentication'>
         <arg><string value='bonita-session:core' /></arg>
       </authentication-service>
-
+ -->
+<authentication-service name='authentication-service' class='org.bonitasoft.integration.ExoDemoAuthenticationImpl' />
       <!-- Description: Querier used in hibernate session name for Bonita core.. -->
       <db-session name='bonita-session:core' session='hibernate-session:core'/>
 
