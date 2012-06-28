@@ -53,7 +53,6 @@
     <!-- ********************* -->
     <!-- maven-release-plugin -->
     <arguments>-Prelease,distrib -Dgatein.working.dir=target -Dmaven.wagon.provider.http=httpclient -Dcargo.timeout=800000</arguments>
-    <version.buildnumber.plugin>1.0</version.buildnumber.plugin>
   </properties>
   <build>
     <pluginManagement>
