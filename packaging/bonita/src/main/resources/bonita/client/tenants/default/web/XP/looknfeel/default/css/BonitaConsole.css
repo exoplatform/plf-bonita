@@ -63,8 +63,8 @@ div#WidgetContainerContent {
 	/*padding-left: 2px; no need as I specified a margin-left 4px in the div container*/
 	/*padding-bottom: 2px;
 	max-width: 100%;
-	overflow: auto;*/
-	background-color: #F9F9F9;
+	overflow: auto;
+	background-color: #F9F9F9;*/
 	
 }
 
@@ -113,7 +113,6 @@ td {
 .link_label {
 	display: inline;
 	cursor: pointer;
-	cursor: hand;
 	margin: -15px 3px 0 0;
 	outline: 0 none; /* Remove the effect of focus */
 	text-decoration: underline;
@@ -122,7 +121,7 @@ td {
 
 .link_label a,.link_label a:visited,.link_label a:hover {
 	cursor: pointer;
-	cursor: hand;
+	/*cursor: hand;*/
 	color: black;
 	display: inline;
 	margin-right: 3px;
@@ -140,13 +139,14 @@ td {
 }
 
 .bos_selectable {
-	cursor: pointer;
+	cursor: hand;
 }
 
 .back_to_link_label a,.back_to_link_label a:visited,.back_to_link_label a:hover	{
 	color: black;
-	cursor: pointer;
+	/*cursor: pointer;*/
 	cursor: hand;
+	display: block;
 	outline: 0 none; /* Remove the effect of focus */
 	text-decoration: underline;
 	font-weight: bold;
@@ -155,9 +155,9 @@ td {
 }
 
 .items_link {
-	color: #de1c18;
+	color: #000000;
 	display: inline;
-	cursor: pointer;
+	/*cursor: pointer;*/
 	cursor: hand;
 	margin-right: 3px;
 	font-weight: bold;
@@ -321,7 +321,7 @@ div#SearchOptionContainer {
 
 /* informational message */
 .message_widget-info {
-	color: #FFFFFF;
+	color: #6D6D6D;
 }
 
 .message_widget-info .middleCenter { /**background-color: #E0EDFE;*/
@@ -415,8 +415,7 @@ div#SearchOptionContainer {
 
 /** Case state (End) */ /** Star Icon (yellow) */
 .yellow_star {
-	background: transparent url(themeResource?theme=default&location=images/sprite.png) no-repeat scroll
-		-10px 0px;
+	background: transparent url(themeResource?theme=default&location=images/sprite.png) no-repeat scroll -10px 0px;
 	height: 16px;
 	width: 15px;
 	margin-bottom: -2px;
@@ -460,17 +459,18 @@ div#SearchOptionContainer {
 }
 
 .panels_container {
-	
+	background-color: #E6E6E6;	
 }
 
 div#left_panel {
-	background-color: #FFFFFF; 
+	/*background-color: #FFFFFF; 
 	border: 1px solid #9f9f9f;
-	float: left;
-	height: 447px;
+	height: 467px; 
 	margin-left: 4px;
-	/*overflow: auto;
-	padding-top: 20px;*/
+	overflow-y: auto;
+	overflow-x: hidden;*/
+	float: left;
+	/*padding-top: 20px;*/
 	width: 270px;
 }
 
@@ -482,20 +482,17 @@ div#right_panel {
 }
 
 .menu_header_left {
-	background: transparent url(themeResource?theme=default&location=images/rounded/left-red-corner.png)
-		no-repeat scroll center left;
+	background: transparent url(themeResource?theme=default&location=images/rounded/left-red-corner.png) no-repeat scroll center left;
 	height: 32px;
 }
 
 .menu_header_right {
-	background: transparent url(themeResource?theme=default&location=images/rounded/right-red-corner.png)
-		no-repeat scroll center right;
+	background: transparent url(themeResource?theme=default&location=images/rounded/right-red-corner.png) no-repeat scroll center right;
 	height: 32px;
 }
 
 .menu_header_inner {
-	background: transparent url(themeResource?theme=default&location=images/rounded/inner-red.png) repeat-x
-		scroll 0 0;
+	background: transparent url(themeResource?theme=default&location=images/rounded/inner-red.png) repeat-x scroll 0 0;
 	height: 32px;
 	margin-left: 10px;
 	margin-right: 10px;
@@ -611,7 +608,7 @@ div#content_panel {
 }
 
 .label_list_more_menu-open .content .link_label {
-	float: left;
+	/*float: left;*/
 	width: 100%;
 }
 
@@ -718,13 +715,13 @@ div#content_panel {
 }
 
 .unified_panels {
-	/*background: #DEDEDE url(themeResource?theme=default&location=images/rounded/grey-shadow-right.png) repeat-y right;
-	margin: 0px 4px;*/
+	background: #EAEAEA url(themeResource?theme=default&location=images/rounded/grey-shadow-right.png) repeat-x repeat-y right;
+	margin: 0px;
 	clear: left;	
 }
 
 .bos_admin_mode .unified_panels {
-	margin-right: 4px;
+	/*margin-right: 4px;*/
 }
 
 #unified_panels_top_right_corner {
@@ -755,6 +752,7 @@ div#content_panel {
 
 .right_side {
 	/*background: transparent url(themeResource?theme=default&location=images/rounded/shadow-right.png) repeat-y scroll center right;*/
+	background-color: #FFFFFF;
 }
 
 .left_side {
@@ -862,8 +860,16 @@ div#content_panel {
 	margin-top: 6px;
 }
 
+.bos_rule_type_policy_chooser{
+	padding-bottom: 4px;
+}
+
+.item_list_content_row_title td{
+	padding-bottom: 4px;
+}
+
 .item_list_content_row_title {
-	background-color:#EFEFEF;
+	background-color:#D6D6D6;
 	color: #444444;
 	cursor: default;
 	font-weight: bold;
@@ -1146,8 +1152,7 @@ div#content_panel {
 }
 
 .unassign_icon_in_menu {
-	background: transparent url(themeResource?theme=default&location=images/sprite-13.png) no-repeat scroll
-		-378px 0px;
+	background: transparent url(themeResource?theme=default&location=images/sprite-13.png) no-repeat scroll -378px 0px;
 	height: 13px;
 	width: 33px;
 	display: inline;
@@ -1155,8 +1160,7 @@ div#content_panel {
 }
 
 .unassign_icon {
-	background: transparent url(themeResource?theme=default&location=images/sprite.png) no-repeat scroll
-		-466px 0px;
+	background: transparent url(themeResource?theme=default&location=images/sprite.png) no-repeat scroll -466px 0px;
 	height: 16px;
 	width: 25px;
 	display: inline;
@@ -1172,8 +1176,7 @@ div#content_panel {
 }
 
 .assign_to_icon_in_menu {
-	background: transparent url(themeResource?theme=default&location=images/sprite-13.png) no-repeat scroll
-		-344px 0px;
+	background: transparent url(themeResource?theme=default&location=images/sprite-13.png) no-repeat scroll -344px 0px;
 	height: 13px;
 	width: 31px;
 	display: inline;
@@ -1182,8 +1185,7 @@ div#content_panel {
 }
 
 .assign_to_icon {
-	background: transparent url(themeResource?theme=default&location=images/sprite.png) no-repeat scroll
-		-424px 0px;
+	background: transparent url(themeResource?theme=default&location=images/sprite.png) no-repeat scroll -424px 0px;
 	height: 16px;
 	width: 38px;
 	display: inline;
@@ -1191,16 +1193,14 @@ div#content_panel {
 }
 
 .assign_to_me_icon_in_menu {
-	background: transparent url(themeResource?theme=default&location=images/sprite-13.png) no-repeat scroll
-		-354px 0px;
+	background: transparent url(themeResource?theme=default&location=images/sprite-13.png) no-repeat scroll -354px 0px;
 	height: 13px;
 	width: 25px;
 	display: inline;
 }
 
 .assign_to_me_icon {
-	background: transparent url(themeResource?theme=default&location=images/sprite.png) no-repeat scroll
-		-435px 0px;
+	background: transparent url(themeResource?theme=default&location=images/sprite.png) no-repeat scroll -435px 0px;
 	height: 16px;
 	width: 25px;
 	display: inline;
@@ -1208,8 +1208,7 @@ div#content_panel {
 }
 
 .suspend_icon_in_menu {
-	background: transparent url(themeResource?theme=default&location=images/sprite-13.png) no-repeat scroll
-		-419px 0px;
+	background: transparent url(themeResource?theme=default&location=images/sprite-13.png) no-repeat scroll -419px 0px;
 	height: 13px;
 	width: 12px;
 	display: inline;
@@ -1218,8 +1217,7 @@ div#content_panel {
 }
 
 .suspend_icon {
-	background: transparent url(themeResource?theme=default&location=images/sprite.png) no-repeat scroll
-		-515px 0px;
+	background: transparent url(themeResource?theme=default&location=images/sprite.png) no-repeat scroll -515px 0px;
 	height: 16px;
 	width: 12px;
 	display: inline;
@@ -1227,8 +1225,7 @@ div#content_panel {
 }
 
 .resume_icon_in_menu {
-	background: transparent url(themeResource?theme=default&location=images/sprite-13.png) no-repeat scroll
-		-449px 0px;
+	background: transparent url(themeResource?theme=default&location=images/sprite-13.png) no-repeat scroll -449px 0px;
 	height: 13px;
 	width: 13px;
 	display: inline;
@@ -1237,8 +1234,7 @@ div#content_panel {
 }
 
 .resume_icon {
-	background: transparent url(themeResource?theme=default&location=images/sprite.png) no-repeat scroll
-		-552px 0px;
+	background: transparent url(themeResource?theme=default&location=images/sprite.png) no-repeat scroll -552px 0px;
 	height: 16px;
 	width: 16px;
 	display: inline;
@@ -1255,8 +1251,7 @@ div#content_panel {
 }
 
 .skip_icon {
-	background: transparent url(themeResource?theme=default&location=images/sprite.png) no-repeat scroll
-		-552px 0px;
+	background: transparent url(themeResource?theme=default&location=images/sprite.png) no-repeat scroll -552px 0px;
 	height: 16px;
 	width: 16px;
 	display: inline;
@@ -1323,40 +1318,35 @@ div#content_panel {
 /* Step Comment Editor (End) **/
 /** Priority (Begin)  */
 .urgent_priority {
-	background: transparent url(themeResource?theme=default&location=images/priority/priority-01.png)
-		no-repeat;
+	background: transparent url(themeResource?theme=default&location=images/priority/priority-01.png) no-repeat;
 	height: 16px;
 	width: 16px;
 	display: inline;
 }
 
 .high_priority {
-	background: transparent url(themeResource?theme=default&location=images/priority/priority-02.png)
-		no-repeat;
+	background: transparent url(themeResource?theme=default&location=images/priority/priority-02.png) no-repeat;
 	height: 16px;
 	width: 16px;
 	display: inline;
 }
 
 .normal_priority {
-	background: transparent url(themeResource?theme=default&location=images/priority/priority-03.png)
-		no-repeat;
+	background: transparent url(themeResource?theme=default&location=images/priority/priority-03.png) no-repeat;
 	height: 16px;
 	width: 16px;
 	display: inline;
 }
 
 .low_priority {
-	background: transparent url(themeResource?theme=default&location=images/priority/priority-04.png)
-		no-repeat;
+	background: transparent url(themeResource?theme=default&location=images/priority/priority-04.png) no-repeat;
 	height: 16px;
 	width: 16px;
 	display: inline;
 }
 
 .none_priority {
-	background: transparent url(themeResource?theme=default&location=images/priority/priority-05.png)
-		no-repeat;
+	background: transparent url(themeResource?theme=default&location=images/priority/priority-05.png) no-repeat;
 	height: 16px;
 	width: 16px;
 	display: inline;
@@ -1437,8 +1427,7 @@ div#content_panel {
 }
 
 .start_case_icon {
-	background: transparent url(themeResource?theme=default&location=images/sprite.png) no-repeat scroll
-		-552px 0px;
+	background: transparent url(themeResource?theme=default&location=images/sprite.png) no-repeat scroll -552px 0px;
 	height: 16px;
 	width: 16px;
 	display: inline;
@@ -1584,8 +1573,7 @@ div#content_panel {
 }
 
 .user_label_widget_selected tbody .middle .middleCenter {
-	background: transparent url(themeResource?theme=default&location=images/rounded/white-shadow-inner.png)
-		repeat-x 0 0;
+	background: transparent url(themeResource?theme=default&location=images/rounded/white-shadow-inner.png) repeat-x 0 0;
 	width: 150px;
 }
 
@@ -1648,8 +1636,7 @@ div#content_panel {
 }
 
 .bos_category_widget-selected tbody .middle .middleCenter {
-	background: transparent url(themeResource?theme=default&location=images/rounded/white-shadow-inner.png)
-		repeat-x 0 0;
+	background: transparent url(themeResource?theme=default&location=images/rounded/white-shadow-inner.png) repeat-x 0 0;
 	width: 150px;
 }
 
@@ -1766,9 +1753,9 @@ div#content_panel {
 }
 
 .user_label_widget .label_dark_red_preview:HOVER {
-   background-image: url(themeResource?theme=default&location=images/buttons.png); 
-   background-position: -33px 0px;
-   background-repeat: no-repeat;
+	background-image: url(themeResource?theme=default&location=images/buttons.png); 
+	background-position: -33px 0px;
+	background-repeat: no-repeat;
 }
 
 .label_dark_red_preview_container .topCenter,.label_dark_red_readonly_container .topCenter
@@ -2685,7 +2672,7 @@ div.identified-right {
 
 /** Reporting (End) */ /** Identity Management View (Begin)*/
 .identity_management_outer_panel {
-	padding: 7px;
+	padding: 7px 0 0;
 }
 
 .identity_management_tab_panel {
@@ -3169,6 +3156,7 @@ div.identified-right {
 	float: left;
 }
 .item_list_navbar .link_label, .case_list_navbar .link_label {
+	color: #6D6D6D;
 	float: left;
 	margin-top: 7px;
 }
@@ -3351,6 +3339,7 @@ div.identified-right {
 
 .bos_navigation_link-selected {
 	color: #4483bf;
+	display: block;
 	font-weight: bold;
 }
 

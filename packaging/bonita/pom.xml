@@ -219,7 +219,8 @@
                                         <unzip src="${tomcat.webapps.dir}/bonita.war" dest="${tomcat.webapps.dir}/plf-bonita" />
                                         <copy file="${project.basedir}/src/main/resources/webapps/bonita/webapp/WEB-INF/web.xml" tofile="${tomcat.webapps.dir}/plf-bonita/WEB-INF/web.xml" overwrite="true" />
                                         <copy file="${project.basedir}/src/main/resources/webapps/bonita/webapp/WEB-INF/classes/html/bonita_default_confirm.html" tofile="${tomcat.webapps.dir}/plf-bonita/WEB-INF/classes/html/bonita_default_confirm.html" overwrite="true" />
-
+										<copy file="${project.basedir}/src/main/resources/webapps/bonita/webapp/WEB-INF/classes/org/bonitasoft/console/public/css/BonitaConsoleExt.css" tofile="${tomcat.webapps.dir}/plf-bonita/WEB-INF/classes/org/bonitasoft/console/public/css/BonitaConsoleExt.css" overwrite="true" />
+										<copy file="${project.basedir}/src/main/resources/webapps/bonita/webapp/console/css/BonitaConsoleExt.css" tofile="${tomcat.webapps.dir}/plf-bonita/console/css/BonitaConsoleExt.css" overwrite="true" />
                                         <copy file="${project.basedir}/src/main/resources/webapps/bonita/webapp/console/gwt/chrome/chrome.css" tofile="${tomcat.webapps.dir}/plf-bonita/console/gwt/chrome/chrome.css" overwrite="true" />
 
                                         <copy todir="${tomcat.webapps.dir}/plf-bonita/WEB-INF/lib">
