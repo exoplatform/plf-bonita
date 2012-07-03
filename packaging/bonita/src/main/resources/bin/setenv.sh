@@ -41,4 +41,3 @@ REST="-Dorg.ow2.bonita.rest-server-address=${BPM_URI}/bonita-server-rest -Dorg.o
 
 CATALINA_OPTS="-Xms256m -Xmx1024m -XX:MaxPermSize=256m $CATALINA_OPTS $LOG_OPTS $SECURITY_OPTS $EXO_OPTS $IDE_OPTS $EXO_PROFILES $BONITA_HOME $REST $BPM_OPTS"
 export CATALINA_OPTS
-
