@@ -32,24 +32,7 @@
 			<access-permissions>*:/platform/users</access-permissions>
 			<container id="OfficeLeft" template="system:/groovy/portal/webui/container/UIContainer.gtmpl">
 				<access-permissions>*:/platform/users</access-permissions>
-				<!-- Process List gadget -->
-				<portlet-application>
-					<portlet>
-						<application-ref>dashboard</application-ref>
-						<portlet-ref>GadgetPortlet</portlet-ref>
-						<preferences>
-							<preference>
-								<name>url</name>
-								<value>local://processListGadget</value>
-								<read-only>false</read-only>
-							</preference>
-						</preferences>
-					</portlet>
-					<title>processList Gadget</title>
-					<access-permissions>*:/platform/users</access-permissions>
-					<show-info-bar>false</show-info-bar>
-					<show-application-state>true</show-application-state>
-				</portlet-application>
+				
 <!-- My Profile gadget -->
 		                <portlet-application>
 					<portlet>
@@ -186,24 +169,7 @@
 			<container id="OfficeRight"  template="system:/groovy/portal/webui/container/UIContainer.gtmpl">
 				<access-permissions>Everyone</access-permissions>
 
-				<!-- Todos List gadget -->		
-				<portlet-application>
-					<portlet>
-						<application-ref>dashboard</application-ref>
-						<portlet-ref>GadgetPortlet</portlet-ref>
-						<preferences>
-							<preference>
-								<name>url</name>
-								<value>local://todoListGadget</value>
-								<read-only>false</read-only>
-							</preference>
-						</preferences>
-					</portlet>
-					<title>todoList Gadget</title>
-					<access-permissions>*:/platform/users</access-permissions>
-					<show-info-bar>false</show-info-bar>
-					<show-application-state>true</show-application-state>
-				</portlet-application>
+				
 <!-- upcoming Events gadget -->
 				<!--portlet-application>
 					<portlet>
@@ -271,7 +237,24 @@
 					<show-info-bar>false</show-info-bar>
 					<show-application-state>true</show-application-state>
 				</portlet-application>				
-
+					<!-- Todos List gadget -->		
+				<portlet-application>
+					<portlet>
+						<application-ref>dashboard</application-ref>
+						<portlet-ref>GadgetPortlet</portlet-ref>
+						<preferences>
+							<preference>
+								<name>url</name>
+								<value>local://todoListGadget</value>
+								<read-only>false</read-only>
+							</preference>
+						</preferences>
+					</portlet>
+					<title>todoList Gadget</title>
+					<access-permissions>*:/platform/users</access-permissions>
+					<show-info-bar>false</show-info-bar>
+					<show-application-state>true</show-application-state>
+				</portlet-application>
                                 <!-- Favorites Documents gadget -->
 				<portlet-application>
 					<portlet>
@@ -311,7 +294,24 @@
 					<show-application-state>true</show-application-state>
 				</portlet-application>
 				-->
-
+				<!-- Process List gadget -->
+				<portlet-application>
+					<portlet>
+						<application-ref>dashboard</application-ref>
+						<portlet-ref>GadgetPortlet</portlet-ref>
+						<preferences>
+							<preference>
+								<name>url</name>
+								<value>local://processListGadget</value>
+								<read-only>false</read-only>
+							</preference>
+						</preferences>
+					</portlet>
+					<title>processList Gadget</title>
+					<access-permissions>*:/platform/users</access-permissions>
+					<show-info-bar>false</show-info-bar>
+					<show-application-state>true</show-application-state>
+				</portlet-application>
 			</container>
 		</container>
 	</page>
@@ -447,8 +447,8 @@
 	</page>
 
 	<page>
-		<name>bonitaTODO</name>
-		<title>bonitaTODO</title>
+		<name>Tasks</name>
+		<title>Tasks</title>
 		<access-permissions>member:/platform/users</access-permissions>
 		<edit-permission>manager:/platform/administrators</edit-permission>
 		<portlet-application>
@@ -463,7 +463,7 @@
 					</preference>
 				</preferences>
 			</portlet>
-			<title>bonitaTODO</title>
+			<title>Tasks</title>
 			<access-permissions>member:/platform/users</access-permissions>
 			<show-info-bar>false</show-info-bar>
 			<height>640px</height>

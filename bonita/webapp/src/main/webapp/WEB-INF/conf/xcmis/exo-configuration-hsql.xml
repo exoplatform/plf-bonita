@@ -98,11 +98,11 @@
 			<description>Nothing</description>
 			<init-params>
 				<object-param>
-					<name>ProcessDocuments</name>
+					<name>BPM cases Attachments</name>
 					<description>Bonita Document Library</description>
 					<object type="org.exoplatform.services.cms.drives.DriveData">
 						<field name="name">
-							<string>ProcessDocuments</string>
+							<string>BPM cases Attachments</string>
 						</field>
 						<field name="workspace">
 							<string>cmis1</string>
@@ -117,7 +117,7 @@
 							<string></string>
 						</field>
 						<field name="views">
-							<string>wcm-category-view</string>
+							<string>b_list-view, e_admin-view</string>
 						</field>
 						<field name="viewPreferences">
 							<boolean>false</boolean>

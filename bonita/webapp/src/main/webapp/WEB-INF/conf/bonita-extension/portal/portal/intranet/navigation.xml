@@ -47,11 +47,11 @@
 			<page-reference>portal::intranet::workflow</page-reference>
 		</node>
 		<node>
-			<uri>bonitaTODO</uri>
-			<name>bonitaTODO</name>
-			<label>#{portal.bpm.label.bonita.todo}</label>
+			<uri>Tasks</uri>
+			<name>Tasks</name>
+			<label>#{portal.bpm.label.bonita.Tasks}</label>
 			<visibility>HIDDEN</visibility>
-			<page-reference>portal::intranet::bonitaTODO</page-reference>
+			<page-reference>portal::intranet::Tasks</page-reference>
 		</node>
 	</page-nodes>
 </node-navigation>

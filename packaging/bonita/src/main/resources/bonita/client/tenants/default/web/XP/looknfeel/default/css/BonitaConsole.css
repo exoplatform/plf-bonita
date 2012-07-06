@@ -847,7 +847,8 @@ div#content_panel {
 .item_list_navbar {
 	background-color:#EFEFEF;
 	float: left;
-	height: 35px;
+	margin-bottom: 5px;
+	/*height: 35px;*/
 	width: 100%;
 }
 

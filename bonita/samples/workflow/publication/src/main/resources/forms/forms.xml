@@ -26,14 +26,14 @@
               </widget>
               <widget id="Title" type="TEXT">
                 <initial-value>
-                  <expression>${(link.split('/'))[(link.split('/')).size()-1]}</expression>
+                  <expression>${String path=link.substring (11);&#13;return "&lt;a href ='"+href+path +"'  TARGET = '_blank' title='click to preview the document to validate'&gt;"+(link.split('/'))[(link.split('/')).size()-1]+"&lt;/a&gt;"}</expression>
                 </initial-value>
                 <allow-html-in-field>true</allow-html-in-field>
-                <label>Title :</label>
+                <label>Title</label>
                 <allow-html-in-label>true</allow-html-in-label>
                 <label-position>LEFT</label-position>
                 <title/>
-                <variable-bound>${(link.split('/'))[(link.split('/')).size()-1]}</variable-bound>
+                <variable-bound>${String path=link.substring (11);&#13;return "&lt;a href ='"+href+path +"'  TARGET = '_blank' title='click to preview the document to validate'&gt;"+(link.split('/'))[(link.split('/')).size()-1]+"&lt;/a&gt;"}</variable-bound>
               </widget>
               <widget id="Auditor_Comment" type="TEXTBOX">
                 <allow-html-in-field>false</allow-html-in-field>
@@ -97,14 +97,14 @@ if(commentaires.startsWith("No Comments")){&#13;
               </widget>
               <widget id="Title" type="TEXT">
                 <initial-value>
-                  <expression>${(link.split('/'))[(link.split('/')).size()-1]}</expression>
+                  <expression>${String path=link.substring (11);&#13;return "&lt;a href ='"+href+path +"'  TARGET = '_blank' title='click to preview the document to validate'&gt;"+(link.split('/'))[(link.split('/')).size()-1]+"&lt;/a&gt;"}</expression>
                 </initial-value>
                 <allow-html-in-field>true</allow-html-in-field>
                 <label>Title :</label>
                 <allow-html-in-label>false</allow-html-in-label>
                 <label-position>LEFT</label-position>
                 <title/>
-                <variable-bound>${(link.split('/'))[(link.split('/')).size()-1]}</variable-bound>
+                <variable-bound>${String path=link.substring (11);&#13;return "&lt;a href ='"+href+path +"'  TARGET = '_blank' title='click to preview the document to validate'&gt;"+(link.split('/'))[(link.split('/')).size()-1]+"&lt;/a&gt;"}</variable-bound>
               </widget>
               <widget id="Motif" type="TEXTBOX">
                 <allow-html-in-field>false</allow-html-in-field>

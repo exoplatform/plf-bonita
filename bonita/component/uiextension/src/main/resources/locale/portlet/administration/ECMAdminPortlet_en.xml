@@ -2479,7 +2479,7 @@
  <UICommentsDisplay>
  	<action>
  		
- 		<GetComment>Comment</GetComment>
+ 		<GetComment>Comments</GetComment>
 		
  		
  	</action>

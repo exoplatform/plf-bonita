@@ -30,7 +30,7 @@ fi
 
 BPM_HOSTNAME=localhost
 BPM_HTTP_PORT=8080
-BPM_URI=http://%BPM_HOSTNAME%:%BPM_HTTP_PORT%
+BPM_URI=http://$BPM_HOSTNAME:$BPM_HTTP_PORT
 
 
 BPM_OPTS="-Dorg.exoplatform.runtime.conf.gatein.host=${BPM_HOSTNAME} -Dorg.exoplatform.runtime.conf.gatein.port=${BPM_HTTP_PORT} -Dorg.exoplatform.runtime.conf.gatein.portal=portal"

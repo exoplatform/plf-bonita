@@ -25,8 +25,8 @@
             <script xmi:type="form:GroovyScript" xmi:id="_B-ZJ1qyHEeCFX6xLi73Ozg" inputScript="&lt;H4>Your approval is required on this content :&lt;/H4>&#xD;&#xA;"/>
             <widgetLayoutInfo xmi:type="form:WidgetLayoutInfo" xmi:id="_B-ZJ16yHEeCFX6xLi73Ozg" horizontalSpan="2"/>
           </widgets>
-          <widgets xmi:type="form:TextInfo" xmi:id="_B-ZJ2KyHEeCFX6xLi73Ozg" name="Title" label="Title" tooltip="" displayLabel="Title :" allowHTMLForDisplayLabel="true" displayDependentWidgetOnlyAfterFirstEventTriggeredAndCondition="false">
-            <script xmi:type="form:GroovyScript" xmi:id="_B-ZJ2ayHEeCFX6xLi73Ozg" inputScript="${(link.split('/'))[(link.split('/')).size()-1]}" allowHTMLInValues="true"/>
+          <widgets xmi:type="form:TextInfo" xmi:id="_B-ZJ2KyHEeCFX6xLi73Ozg" name="Title" label="Title" tooltip="" displayLabel="#i18n[Title]" allowHTMLForDisplayLabel="true" displayDependentWidgetOnlyAfterFirstEventTriggeredAndCondition="false">
+            <script xmi:type="form:GroovyScript" xmi:id="_B-ZJ2ayHEeCFX6xLi73Ozg" inputScript="${String path=link.substring (11);&#xD;return &quot;&lt;a href ='&quot;+href+path +&quot;'  TARGET = '_blank' title='click to preview the document to validate'>&quot;+(link.split('/'))[(link.split('/')).size()-1]+&quot;&lt;/a>&quot;}" allowHTMLInValues="true"/>
             <widgetLayoutInfo xmi:type="form:WidgetLayoutInfo" xmi:id="_B-ZJ2qyHEeCFX6xLi73Ozg" line="1" horizontalSpan="2"/>
           </widgets>
           <widgets xmi:type="form:TextFormField" xmi:id="_B-ZJ26yHEeCFX6xLi73Ozg" name="Auditor_Comment" label="Auditor Comment" displayLabel="Comment :" displayDependentWidgetOnlyAfterFirstEventTriggeredAndCondition="false" mandatory="true">
@@ -54,7 +54,7 @@
           <parameters xmi:type="process:Parameter" xmi:id="_ZJilUqyIEeCFX6xLi73Ozg" key="setCommentaires" value="ACED000574000F247B636F6D6D656E7461697265737D"/>
         </connectors>
         <form xmi:type="form:Form" xmi:id="_woHVIKxzEeCnwf-KdRsvXg" name="Validation" label="Validation" nColumn="2" nLine="5" pageLabel="&amp;nbsp;&amp;nbsp;Publication Process - Final validation before publication" allowHTMLInPageLabel="true">
-          <htmlTemplate xmi:type="process:AssociatedFile" xmi:id="_x1MU0KyKEeC9HY2h3HnCPA" path="User/_8EgSMKxuEeCnwf-KdRsvXg/html/_woHVIKxzEeCnwf-KdRsvXg.html"/>
+          <htmlTemplate xmi:type="process:AssociatedFile" xmi:id="_ks4y8MH5EeGXiZDoue17fg" path="User/_8EgSMKxuEeCnwf-KdRsvXg/html/_woHVIKxzEeCnwf-KdRsvXg.html"/>
           <widgets xmi:type="form:SubmitFormButton" xmi:id="_woHVIqxzEeCnwf-KdRsvXg" name="Soumettre1" label="Soumettre1" displayLabel="Publish" displayDependentWidgetOnlyAfterFirstEventTriggeredAndCondition="false">
             <widgetLayoutInfo xmi:type="form:WidgetLayoutInfo" xmi:id="_woHVI6xzEeCnwf-KdRsvXg" line="4"/>
             <scripts xmi:type="form:GroovyScript" xmi:id="_WApfkKx5EeCFX6xLi73Ozg" exprScript="${import PublicationProcess_1_0.Approval;&#xD;&#xA;&#xD;&#xA;Approval.YES}" setVarScript="approve"/>
@@ -73,7 +73,7 @@
             <widgetLayoutInfo xmi:type="form:WidgetLayoutInfo" xmi:id="_woHVLqxzEeCnwf-KdRsvXg" line="2" horizontalSpan="2"/>
           </widgets>
           <widgets xmi:type="form:TextInfo" xmi:id="_woHVL6xzEeCnwf-KdRsvXg" name="Title" label="Title" tooltip="" displayLabel="Title :" displayDependentWidgetOnlyAfterFirstEventTriggeredAndCondition="false">
-            <script xmi:type="form:GroovyScript" xmi:id="_woHVMKxzEeCnwf-KdRsvXg" inputScript="${(link.split('/'))[(link.split('/')).size()-1]}" allowHTMLInValues="true"/>
+            <script xmi:type="form:GroovyScript" xmi:id="_woHVMKxzEeCnwf-KdRsvXg" inputScript="${String path=link.substring (11);&#xD;return &quot;&lt;a href ='&quot;+href+path +&quot;'  TARGET = '_blank' title='click to preview the document to validate'>&quot;+(link.split('/'))[(link.split('/')).size()-1]+&quot;&lt;/a>&quot;}" allowHTMLInValues="true"/>
             <widgetLayoutInfo xmi:type="form:WidgetLayoutInfo" xmi:id="_woHVMaxzEeCnwf-KdRsvXg" line="1" horizontalSpan="2"/>
           </widgets>
           <widgets xmi:type="form:TextInfo" xmi:id="_woHVMqxzEeCnwf-KdRsvXg" name="Texte1" label="Texte1" tooltip="${commentaires}" showDisplayLabel="false" displayDependentWidgetOnlyAfterFirstEventTriggeredAndCondition="false" readOnly="true">
@@ -111,7 +111,7 @@
       <resourceFolders xmi:type="process:ResourceFolder" xmi:id="_8UJQsKxuEeCnwf-KdRsvXg" path="User/_8EgSMKxuEeCnwf-KdRsvXg/application/application"/>
       <data xmi:type="process:Data" xmi:id="_21y00KxyEeCnwf-KdRsvXg" name="approve" label="approve" dataType="_t4jNAKxyEeCnwf-KdRsvXg" defaultValue="NO"/>
       <data xmi:type="process:Data" xmi:id="_5_QgIKxyEeCnwf-KdRsvXg" documentation="les Commentaires de publisher et le vérificateur" name="commentaires" label="commentaires" dataType="_78AdhqxuEeCnwf-KdRsvXg" defaultValue="No Comments."/>
-      <data xmi:type="process:Data" xmi:id="_GZWCQKxzEeCnwf-KdRsvXg" name="href" label="href" dataType="_78AdhqxuEeCnwf-KdRsvXg" defaultValue="${System.getProperty (&quot;org.exoplatform.runtime.conf.cas.server.name&quot;, &quot;http://localhost:8080&quot;)+&quot;/portal/private/intranet/editor?&quot;+&quot;backto=/portal/private/intranet/bonitaXP&quot;+&quot;&amp;path=&quot;}"/>
+      <data xmi:type="process:Data" xmi:id="_GZWCQKxzEeCnwf-KdRsvXg" name="href" label="href" dataType="_78AdhqxuEeCnwf-KdRsvXg" defaultValue="${System.getProperty (&quot;org.exoplatform.runtime.conf.cas.server.name&quot;)+&quot;/portal/private/intranet/editor?&quot;+&quot;backto=/portal/private/intranet/bonitaXP&quot;+&quot;&amp;path=&quot;}"/>
       <data xmi:type="process:Data" xmi:id="_H2xpkKxzEeCnwf-KdRsvXg" name="link" label="link" dataType="_78AdhqxuEeCnwf-KdRsvXg"/>
       <connections xmi:type="process:SequenceFlow" xmi:id="_8UvtoKxuEeCnwf-KdRsvXg" source="_8RnhIKxuEeCnwf-KdRsvXg" target="_8RdwIKxuEeCnwf-KdRsvXg">
         <decisionTable xmi:type="decision:DecisionTable" xmi:id="_8UvtoaxuEeCnwf-KdRsvXg"/>
@@ -151,7 +151,7 @@
     <includedEntries>SendMail</includedEntries>
     <includedEntries>ActivityDocumentPublished</includedEntries>
     <includedEntries>bonita/bonita</includedEntries>
-    <includedEntries>exo.platform.bonita.samples.workflow.common-2.0.2.x-SNAPSHOT.jar</includedEntries>
+    <includedEntries>exo.platform.bonita.samples.workflow.common-2.0.0.jar</includedEntries>
   </process:MainProcess>
   <notation:Diagram xmi:id="_79frQKxuEeCnwf-KdRsvXg" type="Process" element="_78AdgaxuEeCnwf-KdRsvXg" name="PublicationProcess_1.0.proc" measurementUnit="Pixel">
     <children xmi:type="notation:Node" xmi:id="_8P-iYKxuEeCnwf-KdRsvXg" type="2007" element="_8EgSMKxuEeCnwf-KdRsvXg">

@@ -6,7 +6,7 @@ public class StringUtils {
 
 	public static String getCommentLeave(String processName, String stepName) {
 		String comment = null;
-		comment = "has submitted step \"" + stepName + "\" of process \"" + processName+"\"";
+		comment = "has submitted a \"" + stepName + "\" for a \"" + processName+"\"";
 		return comment;
 	}
 

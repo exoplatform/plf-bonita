@@ -222,7 +222,18 @@
 										<copy file="${project.basedir}/src/main/resources/webapps/bonita/webapp/WEB-INF/classes/org/bonitasoft/console/public/css/BonitaConsoleExt.css" tofile="${tomcat.webapps.dir}/plf-bonita/WEB-INF/classes/org/bonitasoft/console/public/css/BonitaConsoleExt.css" overwrite="true" />
 										<copy file="${project.basedir}/src/main/resources/webapps/bonita/webapp/console/css/BonitaConsoleExt.css" tofile="${tomcat.webapps.dir}/plf-bonita/console/css/BonitaConsoleExt.css" overwrite="true" />
                                         <copy file="${project.basedir}/src/main/resources/webapps/bonita/webapp/console/gwt/chrome/chrome.css" tofile="${tomcat.webapps.dir}/plf-bonita/console/gwt/chrome/chrome.css" overwrite="true" />
-
+										<copy file="${project.basedir}/src/main/resources/webapps/bonita/webapp/console/BonitaConsole.html" tofile="${tomcat.webapps.dir}/plf-bonita/console/BonitaConsole.html" overwrite="true" />
+										<copy file="${project.basedir}/src/main/resources/webapps/bonita/webapp/console/admin.html" tofile="${tomcat.webapps.dir}/plf-bonita/console/admin.html" overwrite="true" />
+                                        <copy todir="${project.build.directory}/src/main/resources/webapps/bonita/webapp/WEB-INF/classes/org/bonitasoft/console/public">
+                                            <fileset dir="${project.build.directory}/src/main/resources/webapps/bonita/webapp/WEB-INF/classes/org/bonitasoft/console/public" includes="**/*" />
+                                        </copy>
+										
+										<copy todir="${project.basedir}/src/main/resources/webapps/bonita/webapp/console/css">
+                                            <fileset dir="${project.basedir}/src/main/resources/webapps/bonita/webapp/console/css/" includes="**/*" />
+                                        </copy>
+										<copy todir="${project.basedir}/src/main/resources/webapps/bonita/webapp/console/pictures">
+                                            <fileset dir="${project.basedir}/src/main/resources/webapps/bonita/webapp/console/pictures" includes="**/*" />
+                                        </copy>
                                         <copy todir="${tomcat.webapps.dir}/plf-bonita/WEB-INF/lib">
                                             <fileset file="${tomcat.lib.dir}/exo.platform.bonita.component.filter-${project.version}.jar"/>
                                         </copy>

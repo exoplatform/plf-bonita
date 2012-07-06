@@ -37,13 +37,14 @@
 }
 
 
-.ApproveAction a{
-    color: #4F4F4F;
+.ApproveAction a {
+    color: #226AB4;
     display: block;
     font-size: 12px;
     line-height: 20px;
     margin-left: 10px;
     padding: 0 15px 0 27px;
+    text-decoration: underline;
     white-space: nowrap;
 }
 </style>

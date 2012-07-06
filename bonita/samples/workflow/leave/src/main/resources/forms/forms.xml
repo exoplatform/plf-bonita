@@ -34,7 +34,7 @@
                   <expression>${pattern}</expression>
                 </initial-value>
                 <allow-html-in-field>false</allow-html-in-field>
-                <label>Pattern</label>
+                <label>Reason</label>
                 <allow-html-in-label>false</allow-html-in-label>
                 <label-position>LEFT</label-position>
                 <title>${pattern}</title>
@@ -55,7 +55,7 @@
                   </validator>
                 </validators>
                 <readonly>true</readonly>
-                <label>Release Date</label>
+                <label>Leave Date</label>
                 <allow-html-in-label>false</allow-html-in-label>
                 <label-position>LEFT</label-position>
                 <title>${release_Date}</title>
@@ -144,7 +144,7 @@
                   <expression>${pattern}</expression>
                 </initial-value>
                 <allow-html-in-field>false</allow-html-in-field>
-                <label>Pattern</label>
+                <label>Reason</label>
                 <allow-html-in-label>false</allow-html-in-label>
                 <label-position>LEFT</label-position>
                 <title>${pattern}</title>
@@ -165,7 +165,7 @@
                   </validator>
                 </validators>
                 <readonly>true</readonly>
-                <label>Realease Date</label>
+                <label>Leave Date</label>
                 <allow-html-in-label>false</allow-html-in-label>
                 <label-position>LEFT</label-position>
                 <title>${release_Date}</title>
@@ -254,7 +254,7 @@
                 <allow-html-in-field>false</allow-html-in-field>
                 <mandatory>false</mandatory>
                 <readonly>false</readonly>
-                <label>Pattern</label>
+                <label>Reason</label>
                 <allow-html-in-label>false</allow-html-in-label>
                 <label-position>LEFT</label-position>
                 <title>${pattern}</title>
@@ -275,7 +275,7 @@
                   </validator>
                 </validators>
                 <readonly>false</readonly>
-                <label>Release Date</label>
+                <label>Leave Date</label>
                 <allow-html-in-label>false</allow-html-in-label>
                 <label-position>LEFT</label-position>
                 <title>${release_Date}</title>
