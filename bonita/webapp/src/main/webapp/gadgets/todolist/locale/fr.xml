@@ -6,4 +6,7 @@
   <msg name="title">Mes tâches</msg>
   <msg name="showall">Montrer Tout</msg>
   <msg name="notask">Aucune Tâche N'est Affectée</msg>
+  <msg name="taskminor">Normal</msg>
+  <msg name="taskmajor">Important</msg>
+  <msg name="taskblocker">Urgent</msg>
 </messageBundle>

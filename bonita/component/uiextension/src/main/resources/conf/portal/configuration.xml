@@ -28,6 +28,36 @@
 			</init-params>
 		</component-plugin>
 	</external-component-plugins>
+	
+	<external-component-plugins>
+		<target-component>org.exoplatform.webui.ext.UIExtensionManager</target-component>
+		<component-plugin>
+			<name>UIApprouveAction</name>
+			<set-method>registerUIExtensionPlugin</set-method>
+			<type>org.exoplatform.webui.ext.UIExtensionPlugin</type>
+			<init-params>
+				<object-param>
+					<name>Comments</name>
+					<object type="org.exoplatform.webui.ext.UIExtension">
+						<field name="type">
+							<string>org.exoplatform.ecm.dms.UIOptionBlocks</string>
+						</field>
+						<field name="name">
+							<string>UICommentsDisplay</string>
+						</field>
+						<field name="component">
+							<string>org.exoplatform.bonitasoft.uiextension.UICommentsDisplay</string>
+						</field>
+					</object>
+				</object-param>
+			</init-params>
+		</component-plugin>
+	</external-component-plugins>
+	
+	
+	
+	
+	
 
 	<external-component-plugins>
 		<!-- The full qualified name of the ResourceBundleService -->

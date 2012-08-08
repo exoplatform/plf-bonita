@@ -4,13 +4,13 @@
 	<parent>
 		<groupId>org.exoplatform.platform</groupId>
 		<artifactId>exo.platform.bonita.parent</artifactId>
-		<version>2.0.x-SNAPSHOT</version>
+		<version>2.0.2.x-snapshot</version>
 	</parent>
 	<artifactId>exo.platform.bonita</artifactId>
 	<packaging>pom</packaging>
 	<name>eXo BonitaSoft Integration</name>
 	<properties>
-		<bonitasoft.version>5.6.1</bonitasoft.version>
+		<bonitasoft.version>5.6.3</bonitasoft.version>
 		<h2.version>1.2.139</h2.version>
 		<tagsoup.version>1.2</tagsoup.version>
 		<metadata.version>2.4.0-beta-1</metadata.version>
@@ -21,7 +21,7 @@
 		<module>config</module>
 		<module>portlet</module>
 		<module>migration</module>
-        <module>samples</module>
+		<module>samples</module>
 	</modules>
 
 </project>

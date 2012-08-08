@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:decision="http://www.bonitasoft.org/ns/studio/process/decision" xmlns:form="http://www.bonitasoft.org/ns/studio/form" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:process="http://www.bonitasoft.org/ns/studio/process" xsi:schemaLocation="http://www.bonitasoft.org/ns/studio/process/decision http://www.bonitasoft.org/ns/studio/process#//decision">
-  <process:MainProcess xmi:id="_lGfwcTnSEeClF5vedE--og" name="Leave_Application1" label="Leave_Application1" bonitaVersion="5.5" bonitaModelVersion="5.5">
+  <process:MainProcess xmi:id="_lGfwcTnSEeClF5vedE--og" name="Leave_Application1" label="Leave_Application1" bonitaVersion="5.6" bonitaModelVersion="5.6">
     <elements xmi:type="process:Pool" xmi:id="_l9Lg0DnSEeClF5vedE--og" name="Leave_Application" label="Leave Application" welcomePageInternal="false" entryPageFlowType="SKIP">
       <elements xmi:type="process:Task" xmi:id="_mNueQDnSEeClF5vedE--og" name="Manager_s_Approval" label="Manager's Approval" outgoing="_EBqoIDnTEeClF5vedE--og _GhfuME7oEeCVhd4MVZhjeA" incoming="_p-0xUDnSEeClF5vedE--og" user="admin" groups="_gm1c8WzEEeCMBrxIp2YvwA">
         <connectors xmi:type="process:Connector" xmi:id="_VMVqoE7rEeCVhd4MVZhjeA" name="activity1" label="activity1" connectorId="ActivityStream" event="taskOnFinish" ignoreErrors="false">
@@ -21,11 +21,11 @@
             <script xmi:type="form:GroovyScript" xmi:id="_AmNbqE_REeCeMcO0Gg0KFw" inputScript="${user}" setVarScript="user"/>
             <widgetLayoutInfo xmi:type="form:WidgetLayoutInfo" xmi:id="_AmOCsE_REeCeMcO0Gg0KFw"/>
           </widgets>
-          <widgets xmi:type="form:TextInfo" xmi:id="_HGIqIFFKEeC8iqaTsoIw5A" name="Pattern" label="Pattern" tooltip="${pattern}" displayLabel="Pattern" displayDependentWidgetOnlyAfterFirstEventTriggeredAndCondition="false">
+          <widgets xmi:type="form:TextInfo" xmi:id="_HGIqIFFKEeC8iqaTsoIw5A" name="Pattern" label="Pattern" tooltip="${pattern}" displayLabel="Reason" displayDependentWidgetOnlyAfterFirstEventTriggeredAndCondition="false">
             <script xmi:type="form:GroovyScript" xmi:id="_KYoVoFFKEeC8iqaTsoIw5A" inputScript="${pattern}"/>
             <widgetLayoutInfo xmi:type="form:WidgetLayoutInfo" xmi:id="_HGOJsFFKEeC8iqaTsoIw5A" line="1"/>
           </widgets>
-          <widgets xmi:type="form:DateFormField" xmi:id="_U0eCYFFKEeC8iqaTsoIw5A" name="Release_DAte" label="Release DAte" tooltip="${release_Date}" displayLabel="Release Date" displayDependentWidgetOnlyAfterFirstEventTriggeredAndCondition="false" readOnly="true" displayFormat="dd MMM yyyy">
+          <widgets xmi:type="form:DateFormField" xmi:id="_U0eCYFFKEeC8iqaTsoIw5A" name="Release_DAte" label="Release DAte" tooltip="${release_Date}" displayLabel="Leave Date" displayDependentWidgetOnlyAfterFirstEventTriggeredAndCondition="false" readOnly="true" displayFormat="dd MMM yyyy">
             <script xmi:type="form:GroovyScript" xmi:id="_N4VWsFFKEeC8iqaTsoIw5A" inputScript="${release_Date}"/>
             <widgetLayoutInfo xmi:type="form:WidgetLayoutInfo" xmi:id="_NO4xEVFKEeC8iqaTsoIw5A" line="2"/>
           </widgets>
@@ -55,11 +55,11 @@
             <script xmi:type="form:GroovyScript" xmi:id="_PZ4O10_SEeCeMcO0Gg0KFw" inputScript="${user}" setVarScript="user"/>
             <widgetLayoutInfo xmi:type="form:WidgetLayoutInfo" xmi:id="_PZ4O2E_SEeCeMcO0Gg0KFw"/>
           </widgets>
-          <widgets xmi:type="form:TextInfo" xmi:id="_Num9gFFLEeC8iqaTsoIw5A" name="Pattern" label="Pattern" tooltip="${pattern}" displayLabel="Pattern" displayDependentWidgetOnlyAfterFirstEventTriggeredAndCondition="false">
+          <widgets xmi:type="form:TextInfo" xmi:id="_Num9gFFLEeC8iqaTsoIw5A" name="Pattern" label="Pattern" tooltip="${pattern}" displayLabel="Reason" displayDependentWidgetOnlyAfterFirstEventTriggeredAndCondition="false">
             <script xmi:type="form:GroovyScript" xmi:id="_RF964FFLEeC8iqaTsoIw5A" inputScript="${pattern}"/>
             <widgetLayoutInfo xmi:type="form:WidgetLayoutInfo" xmi:id="_NurO8FFLEeC8iqaTsoIw5A" line="1"/>
           </widgets>
-          <widgets xmi:type="form:DateFormField" xmi:id="_WXPnQFFLEeC8iqaTsoIw5A" name="Realease_Date" label="Realease Date" tooltip="${release_Date}" displayLabel="Realease Date" displayDependentWidgetOnlyAfterFirstEventTriggeredAndCondition="false" readOnly="true" displayFormat="dd MMM yyyy">
+          <widgets xmi:type="form:DateFormField" xmi:id="_WXPnQFFLEeC8iqaTsoIw5A" name="Realease_Date" label="Realease Date" tooltip="${release_Date}" displayLabel="Leave Date" displayDependentWidgetOnlyAfterFirstEventTriggeredAndCondition="false" readOnly="true" displayFormat="dd MMM yyyy">
             <script xmi:type="form:GroovyScript" xmi:id="_V06WQFFLEeC8iqaTsoIw5A" inputScript="${release_Date}"/>
             <widgetLayoutInfo xmi:type="form:WidgetLayoutInfo" xmi:id="_U7RYgVFLEeC8iqaTsoIw5A" line="2"/>
           </widgets>
@@ -71,9 +71,9 @@
       </elements>
       <elements xmi:type="process:Task" xmi:id="_6dkkUE8eEeCVhd4MVZhjeA" name="Leave_Application_Submission" label="Leave Application Submission" outgoing="_p-0xUDnSEeClF5vedE--og" incoming="_y9qSoE8dEeCVhd4MVZhjeA" user="" groups="_mYTWkDnSEeClF5vedE--og">
         <connectors xmi:type="process:Connector" xmi:id="_qeKCcE7rEeCVhd4MVZhjeA" name="activity3" label="activity3" connectorId="ActivityStream" event="taskOnFinish" ignoreErrors="false">
-          <parameters xmi:type="process:Parameter" xmi:id="_qeKCcU7rEeCVhd4MVZhjeA" key="setProcessName" value="ACED000574001E247B70726F63657373446566696E6974696F6E2E6765744E616D6528297D"/>
-          <parameters xmi:type="process:Parameter" xmi:id="_qeKCck7rEeCVhd4MVZhjeA" key="setActivityName" value="ACED0005740025247B6163746976697479496E7374616E63652E67657441637469766974794E616D6528297D"/>
-          <parameters xmi:type="process:Parameter" xmi:id="_qeKCc07rEeCVhd4MVZhjeA" key="setLoggedUser" value="ACED000574000D247B6C6F67676564557365727D"/>
+          <parameters xmi:type="process:Parameter" xmi:id="_wHROUMdZEeGmb84ebsaH6Q" key="setProcessName" value="ACED000574001F247B70726F63657373446566696E6974696F6E2E6765744C6162656C28297D"/>
+          <parameters xmi:type="process:Parameter" xmi:id="_wHROUcdZEeGmb84ebsaH6Q" key="setActivityName" value="ACED0005740026247B6163746976697479496E7374616E63652E67657441637469766974794C6162656C28297D"/>
+          <parameters xmi:type="process:Parameter" xmi:id="_wHROUsdZEeGmb84ebsaH6Q" key="setLoggedUser" value="ACED000574000D247B6C6F67676564557365727D"/>
         </connectors>
         <form xmi:type="form:Form" xmi:id="_tT7nwE_SEeCeMcO0Gg0KFw" name="Leave_Application_Submission" label="Leave Application Submission" nLine="5" pageLabel="Leave Application Submission">
           <widgets xmi:type="form:TextFormField" xmi:id="_tT7nxE_SEeCeMcO0Gg0KFw" name="user" label="user" displayLabel="User" displayDependentWidgetOnlyAfterFirstEventTriggeredAndCondition="false">
@@ -83,7 +83,7 @@
           <widgets xmi:type="form:SubmitFormButton" xmi:id="_tT7nx0_SEeCeMcO0Gg0KFw" name="Soumettre1" label="Soumettre1" displayLabel="Submit" displayDependentWidgetOnlyAfterFirstEventTriggeredAndCondition="false">
             <widgetLayoutInfo xmi:type="form:WidgetLayoutInfo" xmi:id="_tT8O0E_SEeCeMcO0Gg0KFw" line="4"/>
           </widgets>
-          <widgets xmi:type="form:TextFormField" xmi:id="_mbk4cFFJEeC8iqaTsoIw5A" name="Pattern" label="Pattern" tooltip="${pattern}" displayLabel="Pattern" displayDependentWidgetOnlyAfterFirstEventTriggeredAndCondition="false">
+          <widgets xmi:type="form:TextFormField" xmi:id="_mbk4cFFJEeC8iqaTsoIw5A" name="Pattern" label="Pattern" tooltip="${pattern}" displayLabel="Reason" displayDependentWidgetOnlyAfterFirstEventTriggeredAndCondition="false">
             <script xmi:type="form:GroovyScript" xmi:id="_0cpKAFFKEeC8iqaTsoIw5A" setVarScript="pattern"/>
             <widgetLayoutInfo xmi:type="form:WidgetLayoutInfo" xmi:id="_mcKuUVFJEeC8iqaTsoIw5A" line="1"/>
           </widgets>
@@ -91,7 +91,7 @@
             <script xmi:type="form:GroovyScript" xmi:id="_7sq3gFFJEeC8iqaTsoIw5A" inputScript="${return_Date}" setVarScript="return_Date"/>
             <widgetLayoutInfo xmi:type="form:WidgetLayoutInfo" xmi:id="_x9h4sFFJEeC8iqaTsoIw5A" line="3"/>
           </widgets>
-          <widgets xmi:type="form:DateFormField" xmi:id="_18TbYFFJEeC8iqaTsoIw5A" name="Release_Date" label="Release Date" tooltip="${release_Date}" displayLabel="Release Date" displayDependentWidgetOnlyAfterFirstEventTriggeredAndCondition="false" displayFormat="dd MMM yyyy">
+          <widgets xmi:type="form:DateFormField" xmi:id="_18TbYFFJEeC8iqaTsoIw5A" name="Release_Date" label="Release Date" tooltip="${release_Date}" displayLabel="Leave Date" displayDependentWidgetOnlyAfterFirstEventTriggeredAndCondition="false" displayFormat="dd MMM yyyy">
             <script xmi:type="form:GroovyScript" xmi:id="_2ydnUFFJEeC8iqaTsoIw5A" inputScript="${release_Date}" setVarScript="release_Date"/>
             <widgetLayoutInfo xmi:type="form:WidgetLayoutInfo" xmi:id="_tlGf4VFJEeC8iqaTsoIw5A" line="2"/>
           </widgets>
@@ -113,9 +113,6 @@
       </elements>
       <elements xmi:type="process:EndTerminatedEvent" xmi:id="_ejiGkK09EeC79amXr5OC-Q" name="Fin1" label="Fin1" incoming="_tOP6sDnSEeClF5vedE--og _Lz-7gE7oEeCVhd4MVZhjeA"/>
       <resourceFolders xmi:type="process:ResourceFolder" xmi:id="_p-FKcDnSEeClF5vedE--og" path="User/_l9Lg0DnSEeClF5vedE--og/application/application"/>
-      <processTemplate xmi:type="process:AssociatedFile" xmi:id="_p-FKcTnSEeClF5vedE--og" path="User/_l9Lg0DnSEeClF5vedE--og/html/process.html"/>
-      <pageTemplate xmi:type="process:AssociatedFile" xmi:id="_p-FKcznSEeClF5vedE--og" path="User/_l9Lg0DnSEeClF5vedE--og/html/page.html"/>
-      <consultationTemplate xmi:type="process:AssociatedFile" xmi:id="_p-FKcjnSEeClF5vedE--og" path="User/_l9Lg0DnSEeClF5vedE--og/html/consultation.html"/>
       <data xmi:type="process:Data" xmi:id="_7oA2cVFIEeC8iqaTsoIw5A" name="pattern" label="Pattern" dataType="_lGfwdjnSEeClF5vedE--og"/>
       <data xmi:type="process:Data" xmi:id="_XSINEFFJEeC8iqaTsoIw5A" name="release_Date" label="Release Date" dataType="_lGfwcznSEeClF5vedE--og" defaultValue=""/>
       <data xmi:type="process:Data" xmi:id="_Y78DgFFJEeC8iqaTsoIw5A" name="return_Date" label="Return Date" dataType="_lGfwcznSEeClF5vedE--og" defaultValue=""/>
@@ -175,7 +172,7 @@
     <includedEntries>TraitementComment-0.0.1-SNAPSHOT.jar</includedEntries>
     <includedEntries>bonitasoft.component.utils-0.3-snapshot.jar</includedEntries>
     <includedEntries>bonita/bonita</includedEntries>
-    <includedEntries>exo.platform.bonita.component.utils-3.0.5.jar</includedEntries>
+    <includedEntries>exo.platform.bonita.samples.workflow.common-2.0.0.jar</includedEntries>
   </process:MainProcess>
   <notation:Diagram xmi:id="_lH10QDnSEeClF5vedE--og" type="Process" element="_lGfwcTnSEeClF5vedE--og" name="Leave_Application1_1.0.proc" measurementUnit="Pixel">
     <children xmi:type="notation:Node" xmi:id="_mLfCkDnSEeClF5vedE--og" type="2007" element="_l9Lg0DnSEeClF5vedE--og">

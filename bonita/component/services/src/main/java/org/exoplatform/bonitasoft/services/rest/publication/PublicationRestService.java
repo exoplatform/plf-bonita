@@ -81,7 +81,7 @@ public class PublicationRestService implements ResourceContainer {
    * state
    * 
    * @param node
-   * @param publicationService
+   * @param status
    */
   public void changeState(Node node, String status) throws ValueFormatException,
       PathNotFoundException, UnsupportedRepositoryOperationException, LockException, RepositoryException,

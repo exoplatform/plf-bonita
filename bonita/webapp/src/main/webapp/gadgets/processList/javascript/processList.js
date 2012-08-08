@@ -36,7 +36,7 @@ getXhr=function (){
 getList=function(xhr){
 	//document.getElementById('process').innerHTML=eXo.social.Locale.getMsg('label');
 	var xml= xhr.responseXML;
-	var baseURL = host + "/portal/bpm/workflow?url=";
+	var baseURL = host + "/portal/intranet/workflow?url=";
 	
 	var lightProcessDefinition=xml.getElementsByTagName('LightProcessDefinition');
 	var str='';

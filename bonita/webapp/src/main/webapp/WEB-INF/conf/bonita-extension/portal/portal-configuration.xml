@@ -44,7 +44,7 @@
 						<field name="predefinedOwner">
 							<collection type="java.util.HashSet">
 								<value>
-									<string>bpm</string>
+									<string>intranet</string>
 								</value>
 							</collection>
 						</field>

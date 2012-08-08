@@ -255,11 +255,3 @@ Consider a scenario where "james" wants to take a leave. His manager is "admin" 
 
 
 * Once the decision is submitted, we can see the activities of each stakeholder.
-
-!images/worddav6fa6008b74d300610203ec4a4e513d6f.png|height=270,width=624!
-
-*Figure 22:John's Activity Stream*
-
-!images/worddav3abe0bfb1e402681816eaee61ffb27e8.png|height=243,width=623!
-
-*Figure 23:NO pending Tasks*

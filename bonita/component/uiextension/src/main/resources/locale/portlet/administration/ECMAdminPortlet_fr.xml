@@ -2485,5 +2485,19 @@
  		<Nocomment>Pas de commentaires</Nocomment>
  	</msg>
  </UIApproveAction>
+ 
+ 
+  <UICommentsDisplay>
+ 	<action>
+ 		
+ 		<GetComment>Commentaires</GetComment>
+		
+ 		
+ 	</action>
+ 
+ 	<msg>
+ 		<Nocomment>Pas de commentaires</Nocomment>
+ 	</msg>
+ </UICommentsDisplay>
 </bundle>
 
