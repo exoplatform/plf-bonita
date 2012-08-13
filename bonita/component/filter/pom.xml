@@ -19,7 +19,7 @@
 		</dependency>
 		<dependency>
 			<groupId>org.bonitasoft.console</groupId>
-			<artifactId>security-server-ext</artifactId>
+			<artifactId>security-server</artifactId>
 			<version>${bonitasoft.version}</version>
 			<scope>provided</scope>
 		</dependency>

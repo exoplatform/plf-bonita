@@ -62,14 +62,14 @@
 				<dependency>
 					<groupId>org.bonitasoft</groupId>
 					<artifactId>bonita</artifactId>
-					<version>5.6.3</version>
+					<version>5.7.2</version>
 					<type>war</type>
 				</dependency>
 
 				<dependency>
 					<groupId>org.bonitasoft</groupId>
 					<artifactId>bonita-server-rest</artifactId>
-					<version>5.6.3</version>
+					<version>5.7.2</version>
 					<type>war</type>
 				</dependency>
 				<dependency>
@@ -137,7 +137,7 @@
 										<artifactItem>
 											<groupId>org.bonitasoft</groupId>
 											<artifactId>bonita</artifactId>
-											<version>5.6.3</version>
+											<version>5.7.2</version>
 											<type>war</type>
 											<outputDirectory>${project.build.directory}/tomcat-bundle/webapps</outputDirectory>
 											<destFileName>bonita.war</destFileName>
@@ -145,7 +145,7 @@
 										<artifactItem>
 											<groupId>org.bonitasoft</groupId>
 											<artifactId>bonita-server-rest</artifactId>
-											<version>5.6.3</version>
+											<version>5.7.2</version>
 											<type>war</type>
 											<outputDirectory>${project.build.directory}/tomcat-bundle/webapps</outputDirectory>
 											<destFileName>bonita-server-rest.war</destFileName>
@@ -223,14 +223,14 @@
                                         <copy file="${project.basedir}/src/main/resources/webapps/bonita/webapp/console/gwt/chrome/chrome.css" tofile="${tomcat.webapps.dir}/plf-bonita/console/gwt/chrome/chrome.css" overwrite="true" />
 										<copy file="${project.basedir}/src/main/resources/webapps/bonita/webapp/console/BonitaConsole.html" tofile="${tomcat.webapps.dir}/plf-bonita/console/BonitaConsole.html" overwrite="true" />
 										<copy file="${project.basedir}/src/main/resources/webapps/bonita/webapp/console/admin.html" tofile="${tomcat.webapps.dir}/plf-bonita/console/admin.html" overwrite="true" />
-                                        <copy todir="${project.basedir}/src/main/resources/webapps/bonita/webapp/WEB-INF/classes/org/bonitasoft/console/public">
+                                        <copy todir="${tomcat.webapps.dir}/plf-bonita/webapp/WEB-INF/classes/org/bonitasoft/console/public">
                                             <fileset dir="${project.basedir}/src/main/resources/webapps/bonita/webapp/WEB-INF/classes/org/bonitasoft/console/public" includes="**/*" />
                                         </copy>
 										
-										<copy todir="${project.basedir}/src/main/resources/webapps/bonita/webapp/console/css">
-                                            <fileset dir="${project.basedir}/src/main/resources/webapps/bonita/webapp/console/css/" includes="**/*" />
+										<copy todir="${tomcat.webapps.dir}/plf-bonita/webapp/console/css">
+                                            <fileset dir="${project.basedir}/src/main/resources/webapps/bonita/webapp/console/css" includes="**/*" />
                                         </copy>
-										<copy todir="${project.basedir}/src/main/resources/webapps/bonita/webapp/console/pictures">
+										<copy todir="${tomcat.webapps.dir}/plf-bonita/webapp/console/pictures">
                                             <fileset dir="${project.basedir}/src/main/resources/webapps/bonita/webapp/console/pictures" includes="**/*" />
                                         </copy>
                                         <copy todir="${tomcat.webapps.dir}/plf-bonita/WEB-INF/lib">
