@@ -8,6 +8,6 @@
 	</parent>
 	<artifactId>exo.platform.sample.bonita-website.config</artifactId>
 	<packaging>jar</packaging>
-	<name>Platform for Bonita - Extension Configuration</name>
+	<name>Platform for Bonita - Extension Bonita Configuration</name>
 	<description>Platform for Bonita Extension Configuration</description>
 </project>
