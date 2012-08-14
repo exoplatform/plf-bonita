@@ -20,7 +20,7 @@
     <parent>
         <groupId>org.exoplatform.platform</groupId>
         <artifactId>exo.platform.bonita.samples.workflow</artifactId>
-        <version>2.0.2.x-snapshot</version>
+        <version>3.5.3</version>
     </parent>
     <artifactId>exo.platform.bonita.samples.workflow.leave</artifactId>
 	<packaging>pom</packaging>
