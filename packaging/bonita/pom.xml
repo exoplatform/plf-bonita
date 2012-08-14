@@ -4,7 +4,7 @@
 	<parent>
 		<groupId>org.exoplatform.platform</groupId>
 		<artifactId>exo.platform.packaging</artifactId>
-		<version>2.0.2.x-snapshot</version>
+		<version>3.5.5-SNAPSHOT</version>
 	</parent>
 	<artifactId>exo.platform.packaging.bonita</artifactId>
 	<packaging>pom</packaging>
@@ -62,14 +62,14 @@
 				<dependency>
 					<groupId>org.bonitasoft</groupId>
 					<artifactId>bonita</artifactId>
-					<version>5.7.2</version>
+					<version>${org.exoplatform.bpm.bonita.version}</version>
 					<type>war</type>
 				</dependency>
 
 				<dependency>
 					<groupId>org.bonitasoft</groupId>
 					<artifactId>bonita-server-rest</artifactId>
-					<version>5.7.2</version>
+					<version>${org.exoplatform.bpm.bonita.version}</version>
 					<type>war</type>
 				</dependency>
 				<dependency>
@@ -108,7 +108,7 @@
 											<groupId>org.exoplatform.platform</groupId>
 											<artifactId>exo.platform.packaging.tomcat</artifactId>
 											<type>zip</type>
-											<version>3.5.3</version>
+											<version>${exo.platform.packaging.tomcat.version}</version>
 											<outputDirectory>${project.build.directory}</outputDirectory>
 											<excludes>conf/</excludes>
 										</artifactItem>
@@ -137,7 +137,7 @@
 										<artifactItem>
 											<groupId>org.bonitasoft</groupId>
 											<artifactId>bonita</artifactId>
-											<version>5.7.2</version>
+											<version>${org.exoplatform.bpm.bonita.version}</version>
 											<type>war</type>
 											<outputDirectory>${project.build.directory}/tomcat-bundle/webapps</outputDirectory>
 											<destFileName>bonita.war</destFileName>
@@ -145,7 +145,7 @@
 										<artifactItem>
 											<groupId>org.bonitasoft</groupId>
 											<artifactId>bonita-server-rest</artifactId>
-											<version>5.7.2</version>
+											<version>${org.exoplatform.bpm.bonita.version}</version>
 											<type>war</type>
 											<outputDirectory>${project.build.directory}/tomcat-bundle/webapps</outputDirectory>
 											<destFileName>bonita-server-rest.war</destFileName>

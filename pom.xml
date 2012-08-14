@@ -8,7 +8,7 @@
   </parent>
   <groupId>org.exoplatform.platform</groupId>
   <artifactId>exo.platform.bonita.parent</artifactId>
-  <version>2.0.2.x-snapshot</version>
+  <version>3.5.5-SNAPSHOT</version>
   <packaging>pom</packaging>
   <name>eXo Platform</name>
   <description>Parent POM for platform projects.</description>
@@ -26,31 +26,31 @@
       <jcr.version>1.0</jcr.version>
       <org.hsqldb.version>2.0.0</org.hsqldb.version>
 
-      <version.docbkx.plugin>2.0.13</version.docbkx.plugin>
+       <version.docbkx.plugin>2.0.13</version.docbkx.plugin>
       <version.wikbook.plugin>0.9.37</version.wikbook.plugin>
-      <org.exoplatform.webos.version>2.0.4</org.exoplatform.webos.version>
-      <org.exoplatform.commons.version>1.1.8</org.exoplatform.commons.version>
+      <org.exoplatform.webos.version>2.0.6-SNAPSHOT</org.exoplatform.webos.version>
+      <org.exoplatform.commons.version>1.1.10-SNAPSHOT</org.exoplatform.commons.version>
       <org.exoplatform.gwtframework.version>1.1.2</org.exoplatform.gwtframework.version>
-      <org.exoplatform.ide.version>1.1.6</org.exoplatform.ide.version>
-      <org.exoplatform.cs.version>2.2.9</org.exoplatform.cs.version>
-      <org.exoplatform.ks.version>2.2.9</org.exoplatform.ks.version>
-      <org.exoplatform.ecms.version>2.3.7</org.exoplatform.ecms.version>
-      <org.exoplatform.social.version>1.2.9</org.exoplatform.social.version>
-      <org.exoplatform.integ.version>1.0.7</org.exoplatform.integ.version>
+	<org.exoplatform.ide.version>1.1.8-SNAPSHOT</org.exoplatform.ide.version>
+	<org.exoplatform.cs.version>2.2.11-SNAPSHOT</org.exoplatform.cs.version>
+	<org.exoplatform.ks.version>2.2.11-SNAPSHOT</org.exoplatform.ks.version>
+	<org.exoplatform.ecms.version>2.3.9-SNAPSHOT</org.exoplatform.ecms.version>
+	<org.exoplatform.social.version>1.2.11-SNAPSHOT</org.exoplatform.social.version>
+	<org.exoplatform.integ.version>1.0.9-SNAPSHOT</org.exoplatform.integ.version>
       <org.exoplatform.leadcapture.version>3.4</org.exoplatform.leadcapture.version>
       <org.crsh.version>1.0.0-beta15</org.crsh.version>
       <org.exoplatform.exopackage.version>1.1.4</org.exoplatform.exopackage.version>
-      <org.exoplatform.kernel.version>2.3.7-GA</org.exoplatform.kernel.version>
-      <org.exoplatform.core.version>2.4.7-GA</org.exoplatform.core.version>
-      <org.exoplatform.ws.version>2.2.7-GA</org.exoplatform.ws.version>
-      <org.exoplatform.jcr.version>1.14.7-GA</org.exoplatform.jcr.version>
-      <org.exoplatform.jcr-services.version>1.14.7-GA</org.exoplatform.jcr-services.version>
-      <org.exoplatform.portal.version>3.2.4-PLF</org.exoplatform.portal.version>
-      <org.exoplatform.platform.version>3.5.3</org.exoplatform.platform.version>
-      <org.exoplatform.bpm.bonita.version>5.6.3</org.exoplatform.bpm.bonita.version>
+      <org.exoplatform.kernel.version>2.3.9-GA-SNAPSHOT</org.exoplatform.kernel.version>
+      <org.exoplatform.core.version>2.4.9-GA-SNAPSHOT</org.exoplatform.core.version>
+      <org.exoplatform.ws.version>2.2.9-GA-SNAPSHOT</org.exoplatform.ws.version>
+      <org.exoplatform.jcr.version>1.14.9-GA-SNAPSHOT</org.exoplatform.jcr.version>
+      <org.exoplatform.jcr-services.version>1.14.9-GA-SNAPSHOT</org.exoplatform.jcr-services.version>
+      <org.exoplatform.portal.version>3.2.6-PLF-SNAPSHOT</org.exoplatform.portal.version>
+      <org.exoplatform.platform.version>3.5.5-SNAPSHOT</org.exoplatform.platform.version>
+      <org.exoplatform.bpm.bonita.version>5.7.2</org.exoplatform.bpm.bonita.version>
       <version.release.plugin>2.2.1</version.release.plugin>
       <version.buildnumber.plugin>1.1</version.buildnumber.plugin>
-      <exo.platform.packaging.tomcat.version>3.5.3</exo.platform.packaging.tomcat.version>
+      <exo.platform.packaging.tomcat.version>3.5.5-SNAPSHOT</exo.platform.packaging.tomcat.version>
     <!-- ********************* -->
     <!-- Build settings        -->
     <!-- ********************* -->
