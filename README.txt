@@ -22,7 +22,7 @@ Maven 3
 
 3.1 Clone the SOurce with GIt  from : git@github.com:exoplatform/plf-bonita.git
 
-3.2 Do a checkout of "remotes/origin/feature/Plf-Bonita-SP" 's branch
+3.2 Do a checkout of "remotes/origin/feature/Plf-Bonita-SP-5.6.3" 's branch
 
 3.3 Open a Terminal window  and go to the  directory that has just done the clone.
 
@@ -40,5 +40,5 @@ Maven 3
 
 4.2 put your license in this folder "/packaging/bonita/target/tomcat-bundle/bonita/server/licenses"
 
-5.3 Open your web browsers, Navigate to URL: http://localhost:8080/portal
+4.3 Open your web browsers, Navigate to URL: http://localhost:8080/portal
 
