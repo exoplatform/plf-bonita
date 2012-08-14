@@ -1,19 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE web-app PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN" "http://java.sun.com/dtd/web-app_2_3.dtd">
-
-<web-app>
+<web-app id="console-war" version="2.4" xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
 	<display-name>Bonita Console</display-name>
 	<filter>
 		<filter-name>BPMURLSupportFilter</filter-name>
 		<filter-class>org.bonitasoft.forms.server.filter.BPMURLSupportFilter</filter-class>
-	</filter>
-	<filter>
-		<filter-name>BPMURLSupportFilterAdmin</filter-name>
-		<filter-class>org.bonitasoft.forms.server.filter.BPMURLSupportFilter</filter-class>
-	</filter>
-	<filter>
-		<filter-name>ThreadLocalFilter</filter-name>
-		<filter-class>org.bonitasoft.console.security.server.filter.ThreadLocalFilter</filter-class>
 	</filter>
 	<!-- Cache Filter Start -->
 	<filter>
@@ -66,6 +56,14 @@
 	</filter>
 	<!-- Cache Filter End -->
 	<filter>
+		<filter-name>SetCharacterEncoding</filter-name>
+		<filter-class>org.bonitasoft.forms.server.filter.SetCharacterEncodingFilter</filter-class>
+		<init-param>
+			<param-name>encoding</param-name>
+			<param-value>UTF-8</param-value>
+		</init-param>
+	</filter>
+	<filter>
 		<filter-name>Web Authentication Filter</filter-name>
 		<filter-class>org.exoplatform.bonitasoft.filter.SetCredentialsInSessionFilter</filter-class>
 	</filter>
@@ -75,15 +73,11 @@
 
 	</filter-mapping>
 	<filter-mapping>
-		<filter-name>ThreadLocalFilter</filter-name>
-		<url-pattern>/*</url-pattern>
-	</filter-mapping>
-	<filter-mapping>
 		<filter-name>BPMURLSupportFilter</filter-name>
 		<url-pattern>/console/BonitaConsole.html</url-pattern>
 	</filter-mapping>
 	<filter-mapping>
-		<filter-name>BPMURLSupportFilterAdmin</filter-name>
+		<filter-name>BPMURLSupportFilter</filter-name>
 		<url-pattern>/console/admin.html</url-pattern>
 	</filter-mapping>
 	<filter-mapping>
@@ -98,11 +92,11 @@
 	<filter-mapping>
 		<filter-name>CacheFilter</filter-name>
 		<url-pattern>*.css</url-pattern>
-	</filter-mapping> 
+	</filter-mapping>
 	<filter-mapping>
 		<filter-name>CacheFilter</filter-name>
 		<url-pattern>*.gif</url-pattern>
-	</filter-mapping> 
+	</filter-mapping>
 	<filter-mapping>
 		<filter-name>CacheFilter</filter-name>
 		<url-pattern>*.png</url-pattern>
@@ -114,35 +108,35 @@
 	<filter-mapping>
 		<filter-name>ApplicationResourceCacheFilter</filter-name>
 		<url-pattern>/console/applicationResource</url-pattern>
-	</filter-mapping> 
+	</filter-mapping>
 	<filter-mapping>
 		<filter-name>ApplicationResourceCacheFilter</filter-name>
 		<url-pattern>/console/themeResource</url-pattern>
-	</filter-mapping> 
+	</filter-mapping>
 	<!-- Cache Filter Mapping End -->
+	<filter-mapping>
+		<filter-name>SetCharacterEncoding</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
 	<servlet>
 		<servlet-name>LogoutServlet</servlet-name>
 		<servlet-class>org.bonitasoft.console.security.server.LogoutServlet</servlet-class>
 	</servlet>
 	<servlet>
-		<servlet-name>org.bonitasoft.console.security.server.CredentialsEncryptionServletExt/security/credentialsencryption</servlet-name>
-		<servlet-class>org.bonitasoft.console.security.server.CredentialsEncryptionServletExt</servlet-class>
+		<servlet-name>org.bonitasoft.console.security.server.CredentialsEncryptionServlet/security/credentialsencryption</servlet-name>
+		<servlet-class>org.bonitasoft.console.security.server.CredentialsEncryptionServlet</servlet-class>
 	</servlet>
 	<servlet>
-		<servlet-name>org.bonitasoft.console.server.bam.BonitaWebReportExt/console/bam/run</servlet-name>
-		<servlet-class>org.bonitasoft.console.server.bam.BonitaWebReportExt</servlet-class>
-	</servlet>
-	<servlet>
-		<servlet-name>net.sf.jasperreports.j2ee.servlets.ImageServlet/console/bam/image</servlet-name>
-		<servlet-class>net.sf.jasperreports.j2ee.servlets.ImageServlet</servlet-class>
+		<servlet-name>org.bonitasoft.console.server.bam.BonitaWebReport/console/bam/run</servlet-name>
+		<servlet-class>org.bonitasoft.console.server.bam.BonitaWebReport</servlet-class>
 	</servlet>
 	<servlet>
 		<servlet-name>org.bonitasoft.console.server.ImageRendererServlet/console/image/renderer</servlet-name>
 		<servlet-class>org.bonitasoft.console.server.ImageRendererServlet</servlet-class>
 	</servlet>
 	<servlet>
-		<servlet-name>org.bonitasoft.console.server.bam.ReportingServletExtconsole/reporting</servlet-name>
-		<servlet-class>org.bonitasoft.console.server.bam.ReportingServletExt</servlet-class>
+		<servlet-name>org.bonitasoft.console.server.bam.ReportingServlet/console/reporting</servlet-name>
+		<servlet-class>org.bonitasoft.console.server.bam.ReportingServlet</servlet-class>
 	</servlet>
 	<servlet>
 		<servlet-name>org.bonitasoft.console.server.users.UserServletconsole/user</servlet-name>
@@ -161,36 +155,44 @@
 		<servlet-class>org.bonitasoft.console.servlet.AttachmentImageServlet</servlet-class>
 	</servlet>
 	<servlet>
-		<servlet-name>org.bonitasoft.console.security.server.LoginServletExtconsole/loginservice</servlet-name>
-		<servlet-class>org.bonitasoft.console.security.server.LoginServletExt</servlet-class>
-	</servlet>
-	<servlet> 
-		<servlet-name>org.bonitasoft.forms.server.login.FormLoginServletExtconsole/formlogin</servlet-name>
-		<servlet-class>org.bonitasoft.forms.server.login.FormLoginServletExt</servlet-class> 
-	</servlet>  
-	<servlet>
-		<servlet-name>org.bonitasoft.console.server.login.ConsoleLoginServletExtconsole/login</servlet-name>
-		<servlet-class>org.bonitasoft.console.server.login.ConsoleLoginServletExt</servlet-class>
+		<servlet-name>org.bonitasoft.console.security.server.LoginServletconsole/loginservice</servlet-name>
+		<servlet-class>org.bonitasoft.console.security.server.LoginServlet</servlet-class>
 	</servlet>
 	<servlet>
-		<servlet-name>org.bonitasoft.console.server.identity.IdentityServletExtconsole/identity</servlet-name>
-		<servlet-class>org.bonitasoft.console.server.identity.IdentityServletExt</servlet-class>
+		<servlet-name>org.bonitasoft.forms.server.login.FormLoginServletconsole/formlogin</servlet-name>
+		<servlet-class>org.bonitasoft.forms.server.login.FormLoginServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>org.bonitasoft.console.server.login.ConsoleLoginServletconsole/login</servlet-name>
+		<servlet-class>org.bonitasoft.console.server.login.ConsoleLoginServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>org.bonitasoft.console.server.identity.IdentityServletconsole/identity</servlet-name>
+		<servlet-class>org.bonitasoft.console.server.identity.IdentityServlet</servlet-class>
 	</servlet>
 	<servlet>
 		<servlet-name>org.bonitasoft.console.servlet.AttachmentDownloadServletconsole/attachmentDownload</servlet-name>
 		<servlet-class>org.bonitasoft.console.servlet.AttachmentDownloadServlet</servlet-class>
 	</servlet>
 	<servlet>
-		<servlet-name>org.bonitasoft.console.server.steps.StepServletExtconsole/step</servlet-name>
-		<servlet-class>org.bonitasoft.console.server.steps.StepServletExt</servlet-class>
+		<servlet-name>org.bonitasoft.forms.server.FormLayoutDownloadServletconsole/formLayoutDownload</servlet-name>
+		<servlet-class>org.bonitasoft.forms.server.FormLayoutDownloadServlet</servlet-class>
+	</servlet>	
+	<servlet>
+		<servlet-name>org.bonitasoft.console.server.steps.StepServletconsole/step</servlet-name>
+		<servlet-class>org.bonitasoft.console.server.steps.StepServlet</servlet-class>
 	</servlet>
 	<servlet>
 		<servlet-name>org.bonitasoft.console.server.steps.EventServletconsole/event</servlet-name>
 		<servlet-class>org.bonitasoft.console.server.steps.EventServlet</servlet-class>
 	</servlet>
 	<servlet>
-		<servlet-name>org.bonitasoft.forms.server.FormsServletExtconsole/formsservice</servlet-name>
-		<servlet-class>org.bonitasoft.forms.server.FormsServletExt</servlet-class>
+		<servlet-name>org.bonitasoft.forms.server.FormsServletconsole/formsservice</servlet-name>
+		<servlet-class>org.bonitasoft.forms.server.FormsServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>org.bonitasoft.forms.server.FormsServletapplication/homepage</servlet-name>
+		<servlet-class>org.bonitasoft.forms.server.HomepageServlet</servlet-class>
 	</servlet>
 	<servlet>
 		<servlet-name>org.bonitasoft.console.servlet.FileUploadServletconsole/fileUpload</servlet-name>
@@ -201,79 +203,39 @@
 		<servlet-class>org.bonitasoft.console.server.categories.CategoryServlet</servlet-class>
 	</servlet>
 	<servlet>
-		<servlet-name>org.bonitasoft.console.server.deployment.RemoteDeploymentServletconsole/remotedeployment</servlet-name>
-		<servlet-class>org.bonitasoft.console.server.deployment.RemoteDeploymentServlet</servlet-class>
+		<servlet-name>org.bonitasoft.console.server.processes.ProcessServletconsole/process</servlet-name>
+		<servlet-class>org.bonitasoft.console.server.processes.ProcessServlet</servlet-class>
 	</servlet>
 	<servlet>
-		<servlet-name>org.bonitasoft.console.server.licensing.LicensingServletconsole/licensing</servlet-name>
-		<servlet-class>org.bonitasoft.console.server.licensing.LicensingServlet</servlet-class>
-	</servlet>
-	<servlet>
-		<servlet-name>org.bonitasoft.console.server.processes.ProcessServletExtconsole/process</servlet-name>
-		<servlet-class>org.bonitasoft.console.server.processes.ProcessServletExt</servlet-class>
-	</servlet>
-	<servlet>
-		<servlet-name>org.bonitasoft.console.server.privileges.PrivilegesServletExtconsole/privilege</servlet-name>
-		<servlet-class>org.bonitasoft.console.server.privileges.PrivilegesServletExt</servlet-class>
-	</servlet>
-	<servlet>
-		<servlet-name>org.bonitasoft.console.server.cases.CaseServletExtconsole/case</servlet-name>
-		<servlet-class>org.bonitasoft.console.server.cases.CaseServletExt</servlet-class>
+		<servlet-name>org.bonitasoft.console.server.cases.CaseServletconsole/case</servlet-name>
+		<servlet-class>org.bonitasoft.console.server.cases.CaseServlet</servlet-class>
 	</servlet>
 	<servlet>
 		<servlet-name>org.bonitasoft.console.server.labels.LabelServletconsole/label</servlet-name>
 		<servlet-class>org.bonitasoft.console.server.labels.LabelServlet</servlet-class>
 	</servlet>
 	<servlet>
-		<servlet-name>org.bonitasoft.console.server.documents.DocumentsServletExt/document</servlet-name>
-		<servlet-class>org.bonitasoft.console.server.documents.DocumentsServletExt</servlet-class>
-	</servlet>
-	<servlet>
-		<servlet-name>themes</servlet-name>
-		<servlet-class>org.bonitasoft.console.server.themes.ThemesServlet</servlet-class>
-	</servlet>
-	<servlet>
-		<servlet-name>org.bonitasoft.console.common.themes.ThemeUploadServlet/console/themeUpload</servlet-name>
-		<servlet-class>org.bonitasoft.console.common.themes.ThemeUploadServlet</servlet-class>
-	</servlet>
-	<servlet>
 		<servlet-name>org.bonitasoft.console.common.themes.ThemeResourceServletconsole/themeResource</servlet-name>
 		<servlet-class>org.bonitasoft.console.common.themes.ThemeResourceServlet</servlet-class>
-	</servlet>
-	<servlet>
-		<servlet-name>monitoring</servlet-name>
-		<servlet-class>org.bonitasoft.console.server.monitoring.MonitoringServlet</servlet-class>
-	</servlet>
-	<servlet>
-		<servlet-name>org.bonitasoft.console.servlet.PDFServletconsole/PDFServlet</servlet-name>
-		<servlet-class>org.bonitasoft.console.servlet.PDFServlet</servlet-class>
-	</servlet>
-	<servlet>
-		<servlet-name>org.bonitasoft.forms.server.HomepageServletExtconsole/homepage</servlet-name>
-		<servlet-class>org.bonitasoft.forms.server.HomepageServletExt</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>LogoutServlet</servlet-name>
 		<url-pattern>/console/logout</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
-		<servlet-name>org.bonitasoft.console.security.server.CredentialsEncryptionServletExt/security/credentialsencryption</servlet-name>
+		<servlet-name>org.bonitasoft.console.security.server.CredentialsEncryptionServlet/security/credentialsencryption</servlet-name>
 		<url-pattern>/security/credentialsencryption</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
-		<servlet-name>org.bonitasoft.console.server.bam.BonitaWebReportExt/console/bam/run</servlet-name>
+		<servlet-name>org.bonitasoft.console.server.bam.BonitaWebReport/console/bam/run</servlet-name>
 		<url-pattern>/console/bam/run</url-pattern>
-	</servlet-mapping>
-	<servlet-mapping>
-		<servlet-name>net.sf.jasperreports.j2ee.servlets.ImageServlet/console/bam/image</servlet-name>
-		<url-pattern>/console/bam/image</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>org.bonitasoft.console.server.ImageRendererServlet/console/image/renderer</servlet-name>
 		<url-pattern>/console/image/renderer</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
-		<servlet-name>org.bonitasoft.console.server.bam.ReportingServletExtconsole/reporting</servlet-name>
+		<servlet-name>org.bonitasoft.console.server.bam.ReportingServlet/console/reporting</servlet-name>
 		<url-pattern>/console/reporting</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
@@ -287,25 +249,25 @@
 	<servlet-mapping>
 		<servlet-name>org.bonitasoft.console.server.ConsoleResourceServletconsole/consoleResource</servlet-name>
 		<url-pattern>/console/consoleResource</url-pattern>
-	</servlet-mapping> 
+	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>org.bonitasoft.console.servlet.AttachmentImageServletconsole/attachmentImage</servlet-name>
 		<url-pattern>/console/attachmentImage</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
-		<servlet-name>org.bonitasoft.console.security.server.LoginServletExtconsole/loginservice</servlet-name>
+		<servlet-name>org.bonitasoft.console.security.server.LoginServletconsole/loginservice</servlet-name>
 		<url-pattern>/console/loginservice</url-pattern>
 	</servlet-mapping>
-	<servlet-mapping> 
-		<servlet-name>org.bonitasoft.forms.server.login.FormLoginServletExtconsole/formlogin</servlet-name> 
+	<servlet-mapping>
+		<servlet-name>org.bonitasoft.forms.server.login.FormLoginServletconsole/formlogin</servlet-name>
 		<url-pattern>/console/formlogin</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
-		<servlet-name>org.bonitasoft.console.server.login.ConsoleLoginServletExtconsole/login</servlet-name>
+		<servlet-name>org.bonitasoft.console.server.login.ConsoleLoginServletconsole/login</servlet-name>
 		<url-pattern>/console/login</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
-		<servlet-name>org.bonitasoft.console.server.identity.IdentityServletExtconsole/identity</servlet-name>
+		<servlet-name>org.bonitasoft.console.server.identity.IdentityServletconsole/identity</servlet-name>
 		<url-pattern>/console/identity</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
@@ -313,7 +275,11 @@
 		<url-pattern>/console/attachmentDownload</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
-		<servlet-name>org.bonitasoft.console.server.steps.StepServletExtconsole/step</servlet-name>
+		<servlet-name>org.bonitasoft.forms.server.FormLayoutDownloadServletconsole/formLayoutDownload</servlet-name>
+		<url-pattern>/console/formLayoutDownload</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>org.bonitasoft.console.server.steps.StepServletconsole/step</servlet-name>
 		<url-pattern>/console/step</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
@@ -321,7 +287,7 @@
 		<url-pattern>/console/event</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
-		<servlet-name>org.bonitasoft.forms.server.FormsServletExtconsole/formsservice</servlet-name>
+		<servlet-name>org.bonitasoft.forms.server.FormsServletconsole/formsservice</servlet-name>
 		<url-pattern>/console/formsservice</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
@@ -333,57 +299,26 @@
 		<url-pattern>/console/category</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
-		<servlet-name>org.bonitasoft.console.server.deployment.RemoteDeploymentServletconsole/remotedeployment</servlet-name>
-		<url-pattern>/console/remotedeployment</url-pattern>
-	</servlet-mapping>
-	<servlet-mapping>
-		<servlet-name>org.bonitasoft.console.server.licensing.LicensingServletconsole/licensing</servlet-name>
-		<url-pattern>/console/licensing</url-pattern>
-	</servlet-mapping>
-	<servlet-mapping>
-		<servlet-name>org.bonitasoft.console.server.processes.ProcessServletExtconsole/process</servlet-name>
+		<servlet-name>org.bonitasoft.console.server.processes.ProcessServletconsole/process</servlet-name>
 		<url-pattern>/console/process</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
-		<servlet-name>org.bonitasoft.console.server.privileges.PrivilegesServletExtconsole/privilege</servlet-name>
-		<url-pattern>/console/privilege</url-pattern>
+		<servlet-name>org.bonitasoft.console.server.cases.CaseServletconsole/case</servlet-name>
+		<url-pattern>/console/case</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
-		<servlet-name>org.bonitasoft.console.server.cases.CaseServletExtconsole/case</servlet-name>
-		<url-pattern>/console/case</url-pattern>
+		<servlet-name>org.bonitasoft.forms.server.FormsServletapplication/homepage</servlet-name>
+		<url-pattern>/console/homepage</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>org.bonitasoft.console.server.labels.LabelServletconsole/label</servlet-name>
 		<url-pattern>/console/label</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
-		<servlet-name>org.bonitasoft.console.server.documents.DocumentsServletExt/document</servlet-name>
-		<url-pattern>/console/document</url-pattern>
-	</servlet-mapping>
-	<servlet-mapping>
-		<servlet-name>themes</servlet-name>
-		<url-pattern>/console/themes</url-pattern>
-	</servlet-mapping> 
-	<servlet-mapping>
-		<servlet-name>org.bonitasoft.console.common.themes.ThemeUploadServlet/console/themeUpload</servlet-name>
-		<url-pattern>/console/themeUpload</url-pattern>
-	</servlet-mapping>  
-	<servlet-mapping>
 		<servlet-name>org.bonitasoft.console.common.themes.ThemeResourceServletconsole/themeResource</servlet-name>
 		<url-pattern>/console/themeResource</url-pattern>
 	</servlet-mapping>
-	<servlet-mapping>
-		<servlet-name>org.bonitasoft.forms.server.HomepageServletExtconsole/homepage</servlet-name>
-		<url-pattern>/console/homepage</url-pattern>
-	</servlet-mapping>
-	<servlet-mapping>
-		<servlet-name>monitoring</servlet-name>
-		<url-pattern>/console/monitoring</url-pattern>
-	</servlet-mapping>
-	<servlet-mapping>
-		<servlet-name>org.bonitasoft.console.servlet.PDFServletconsole/PDFServlet</servlet-name>
-		<url-pattern>/console/PDFDownload</url-pattern>
-	</servlet-mapping>
+	<!-- Default page to serve -->
 	<welcome-file-list>
 		<welcome-file>index.html</welcome-file>
 	</welcome-file-list>
