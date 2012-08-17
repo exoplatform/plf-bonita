@@ -31,7 +31,7 @@ fi
 BPM_HOSTNAME=${BPM_HOSTNAME-localhost}
 BPM_PORT=${BPM_PORT-8080}
 BPM_SCHEME=${BPM_SCHEME-http}
-BPM_URI=${BPM_SCHEME}://${BPM_HOSTNAME}:${BPM_HTTP_PORT}
+BPM_URI=${BPM_SCHEME}://${BPM_HOSTNAME}:${BPM_PORT}
 BPM_OPTS="-Dorg.exoplatform.runtime.conf.gatein.host=${BPM_HOSTNAME} -Dorg.exoplatform.runtime.conf.gatein.port=${BPM_PORT} -Dorg.exoplatform.runtime.conf.gatein.portal=portal"
 BPM_OPTS="-Dorg.exoplatform.runtime.conf.cas.server.name=${BPM_URI} ${BPM_OPTS}"
 
